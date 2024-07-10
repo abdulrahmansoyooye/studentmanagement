@@ -1,3 +1,5 @@
+
+
 html {
   box-sizing: border-box;
 }
@@ -18,3 +20,4 @@ h1 {
 .input-box {
   @apply relative w-[100%] h-[50px]  mt-16 mb-0;
 }
+

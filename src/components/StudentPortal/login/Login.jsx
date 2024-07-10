@@ -1,27 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../assets/unilorin_logo2.png";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useSession } from "../../../context/session";
 function Login() {
+  const [data, setData] = useState({
+    matricNumber: "",
+    password: "",
+  });
+  const { updateSessionData } = useSession();
+
+  const { matricNumber, password } = data;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+  const [errors, setErrors] = useState(false);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://studentbackendportal.onrender.com/auth/login",
+        data
+      );
+      if (response.status === 200) {
+        updateSessionData(response.data);
+        navigate("/");
+      }
+    } catch (error) {
+      setErrors(`${error.response.data.message} Please try again`);
+    }
+  };
+
   return (
     <div className="p-[2rem]">
       <img src={logo} className="w-[80px] m-auto" alt="Logo" />
       <div className="wrapper">
-        <form action="">
-          <h1 className="">Login Your Details!</h1>
+        <form onSubmit={handleSubmit}>
+          <h1 className="text-[2rem] font-[500]">Login Your Details!</h1>
           <p className=" text-gray-500 text-center mt-2">
             Welcome back! Please enter your Details!
           </p>
-
+          {<p className="text-red-500 text-center w-full my-4"> {errors}</p>}
           <div className="grid gap-8 mt-8">
             <div className="relative">
               <label htmlFor="matric_no" className="block text-gray-700 mb-2">
                 Matric Number
               </label>
               <input
+                required={true}
                 type="text"
-                name="matric_no"
+                value={matricNumber}
+                onChange={handleChange}
+                name="matricNumber"
                 placeholder="Enter your matric number"
                 className="w-full px-4 py-2 border rounded"
               />
@@ -33,6 +66,9 @@ function Login() {
                 Password
               </label>
               <input
+                required
+                value={password}
+                onChange={handleChange}
                 type="password"
                 name="password"
                 placeholder="********"
@@ -48,7 +84,9 @@ function Login() {
               <p>Remember for 30 days</p>
             </div>
           </div>
-          <button className="blue_btn w-full">Login</button>
+          <button className="blue_btn w-full" type="submit">
+            Login
+          </button>
 
           <div className="register-link text-[14.5px] text-center mt-8">
             <p>

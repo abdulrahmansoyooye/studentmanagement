@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./StudentPortal.css";
 import logo from "../assets/unilorin_logo2.png";
@@ -242,6 +242,7 @@ function StudentPortal() {
     if (!formData.photo) newErrors.photo = "Passport photo is required";
     return newErrors;
   };
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -253,16 +254,22 @@ function StudentPortal() {
       user.append("matricNumber", formData.matricNumber);
       user.append("level", formData.level);
       user.append("password", formData.password);
-      user.append("phote", formData.photo);
+      user.append("photo", formData.photo);
       user.append("gender", formData.gender);
       user.append("email", formData.email);
 
       console.log(user);
-      const res = await axios.post(
-        "https://studentbackendportal.onrender.com/auth/register/",
-        user
-      );
-      console.log(res);
+      try {
+        const res = await axios.post(
+          "https://studentbackendportal.onrender.com/auth/register/",
+          user
+        );
+        if (res.status === 201) {
+          navigate("/login");
+        }
+      } catch (error) {
+        setErrors({ message: "Registration Failed. Please try again" });
+      }
     } else {
       setErrors(validationErrors);
     }
@@ -271,13 +278,14 @@ function StudentPortal() {
     <div className="p-[2rem] flex items-center justify-center bg-gray-50">
       <div className="bg-white p-8 rounded   sm:w-[70%] m-auto">
         <img src={logo} className="w-20 h-20 mx-auto mb-6" alt="Logo" />
+        {errors && <p>{errors.message}</p>}
         <h1 className="text-2xl font-bold text-center mb-4 text-indigo-600">
           Register Here
         </h1>
         <p className="text-center mb-8 text-gray-600">
           Please enter your details.
         </p>
-        <div className="flex flex-col items-center mb-4">
+        <div className="flex flex-col items-center mb-4 gap-[1rem]">
           <div
             onClick={handleImageClick}
             className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer"

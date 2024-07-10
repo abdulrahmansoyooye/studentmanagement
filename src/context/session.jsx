@@ -4,7 +4,7 @@ const sessionContext = createContext();
 
 export const SessionProvider = ({ children }) => {
   const [sessionData, setSessionData] = useState(() => {
-    const storedData = sessionStorage.getItem("token");
+    const storedData = sessionStorage.getItem("session");
     return storedData ? JSON.parse(storedData) : null;
   });
   const updateSessionData = (newData) => {

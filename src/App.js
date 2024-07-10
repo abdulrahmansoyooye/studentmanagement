@@ -24,8 +24,7 @@ import IdCardDetails from "./components/StudentPortal/IDcardDetails.jsx";
 import { useSession } from "./context/session.jsx";
 
 export default function App() {
-  const { sessionData, updateSessionData } = useSession();
-
+  const { sessionData } = useSession();
   const initialUserData = {
     name: "Ajeigbe Sarat",
     matric: "20/52HL120",
