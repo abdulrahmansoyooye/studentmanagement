@@ -59,13 +59,9 @@ export default function App() {
           <Route path="notifications" element={<Notifications />} />
           <Route path="/document-management" element={<DocumentManagement />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/profile-overview" element={<ProfileOverview />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
         </Route>
-
-        <Route
-          path="/profile-overview"
-          element={<ProfileOverview userData={initialUserData} />}
-        />
-        <Route path="edit-profile" element={<EditProfile />} />
       </Routes>
     </BrowserRouter>
   );

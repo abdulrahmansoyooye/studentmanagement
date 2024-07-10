@@ -8,6 +8,8 @@ import {
   LifeBuoy,
   LayoutDashboard,
   UserCircle,
+  Edit,
+  Edit3,
 } from "lucide-react";
 import logo from "../../assets/sdm2_logo.png";
 import identityCardIcon from "../../assets/id-card.png";
@@ -65,17 +67,18 @@ export default function Sidebar() {
               link="/registration-status"
             />
             <SidebarItem
-              icon={
-                <img
-                  src={documentIcon}
-                  alt="Document Management"
-                  className="w-5"
-                />
-              }
+              icon={<UserCircle size={24} />}
+              text="Profile Overview"
+              to="/profile-overview"
+              id="profile"
+              link="/profile-overview"
+            />
+            <SidebarItem
+              icon={<Edit3 size={24} />}
               text="Edit Profile"
               to="/edit-profile"
-              id="edit-profile"
-              link="/profile-overview"
+              id="profile"
+              link="/edit-profile"
             />
           </ul>
         </SidebarContext.Provider>

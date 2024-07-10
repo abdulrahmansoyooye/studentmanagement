@@ -8,14 +8,13 @@ const ProfileOverview = ({ userData }) => {
   const { userId } = sessionData;
   const { token } = sessionData;
   useEffect(() => {
-    // Simulating an API call to fetch user data if userData is not provided
     (async function fetchUserData() {
       try {
         const response = await fetch(`http://localhost:3001/users/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }); // Replace with your API endpoint
+        });
         const data = await response.json();
         setUser(data);
       } catch (error) {
@@ -58,11 +57,6 @@ const ProfileOverview = ({ userData }) => {
           <strong>Phone Number:</strong> 07011280726
         </p>
       </div>
-      {/* <div className="mt-4">
-        <Link to="/dashboard" className="block text-blue-500 hover:underline">
-          Dashboard
-        </Link>
-      </div> */}
     </div>
   );
 };
