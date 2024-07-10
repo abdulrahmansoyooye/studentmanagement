@@ -9,11 +9,14 @@ const IdCardDetails = () => {
   useEffect(() => {
     (async function fetchUserData() {
       try {
-        const response = await fetch(`http://localhost:3001/idcard/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          `https://studentbackendportal.onrender.com/idcard/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const data = await response.json();
         setMessage(data);
         console.log(data);

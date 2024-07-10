@@ -6,7 +6,7 @@ import QrCodeDisplay from "./QrCodeDisplay";
 
 const IdentityCards = () => {
   return (
-    <div className="flex flex-col gap-[2rem] p-[2rem_1rem]">
+    <div className="flex flex-col gap-[2rem] p-[2rem_1rem] border w-full">
       <div className="flex max-lg:flex-col justify-between  gap-[1rem]">
         <h2 className="text-xl font-semibold">Your ID Card</h2>
         <button className="bg-[#000080] text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none">
