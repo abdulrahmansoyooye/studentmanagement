@@ -26,7 +26,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="h-screen bg-white ">
+    <aside className="fixed h-screen bg-white mr-[3rem] mt-[3rem]">
       <nav
         className={`h-full flex flex-col mt-[5rem] justify-between  shadow-sm transition-all duration-300 `}
       >

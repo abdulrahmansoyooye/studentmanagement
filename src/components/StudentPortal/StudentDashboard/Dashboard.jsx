@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div className="">
       {/* <Header /> */}
-      <div className="flex max-lg:flex-col gap-[1rem] mt-[5rem] ">
+      <div className="flex max-lg:flex-col gap-[1rem]  ">
         <ProfileOverview />
         <IdCardDetails />
       </div>

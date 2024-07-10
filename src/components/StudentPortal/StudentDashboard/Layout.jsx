@@ -1,11 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 const Layout = () => {
   return (
     <div className="flex ">
       <Sidebar />
-      <div style={{ flex: 1, padding: "10px" }}>
+      <Header />
+      <div className=" p-[5rem] pr-[1rem] pl-[6rem]">
         <Outlet />
       </div>
     </div>
