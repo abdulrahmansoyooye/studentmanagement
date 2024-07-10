@@ -1,6 +1,5 @@
 import React from "react";
 import "./Login.css";
-import { FaUser, FaLock } from "react-icons/fa";
 import logo from "../../assets/unilorin_logo2.png";
 import { Link } from "react-router-dom";
 
@@ -49,18 +48,12 @@ function Login() {
               <p>Remember for 30 days</p>
             </div>
           </div>
-          <button className="bg-[#000080] text-white px-4 py-2 rounded col-span-2 w-full">
-            Login
-          </button>
+          <button className="blue_btn w-full">Login</button>
 
           <div className="register-link text-[14.5px] text-center mt-8">
             <p>
               Don't have an account?{" "}
-              <Link
-                to={"/register"}
-                href="#"
-                className="underline"
-              >
+              <Link to={"/register"} href="#" className="underline">
                 Register
               </Link>
             </p>

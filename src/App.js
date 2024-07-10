@@ -1,6 +1,6 @@
 // src/App.js
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 import StudentPortal from "./components/StudentPortal/StudentPortal";
@@ -21,8 +21,11 @@ import ViewIdCard from "./components/StudentPortal/StudentDashboard/ViewIdCard";
 import DownloadIdCard from "./components/StudentPortal/StudentDashboard/DownloadIdCard";
 import QrCodeDisplay from "./components/StudentPortal/StudentDashboard/QrCodeDisplay";
 import IdCardDetails from "./components/StudentPortal/IDcardDetails.jsx";
+import { useSession } from "./context/session.jsx";
 
 export default function App() {
+  const { sessionData, updateSessionData } = useSession();
+
   const initialUserData = {
     name: "Ajeigbe Sarat",
     matric: "20/52HL120",
@@ -42,18 +45,12 @@ export default function App() {
 
         {/* New Layout Routes */}
         <Route
-          index
-          element={
-            <>
-              <Header />
-              <Sidebar />
-            </>
-          }
-        />
-        <Route path="/" element={<Layout />}>
+          path="/"
+          element={sessionData ? <Layout /> : <Navigate to={"/login"} />}
+        >
           {/* Include Header and Sidebar here */}
 
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
 
           <Route path="/identity-cards" element={<IdentityCards />}>
             <Route path="qr-code-display" element={<QrCodeDisplay />} />

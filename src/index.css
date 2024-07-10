@@ -6,23 +6,11 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  /* background-image: url("Components/Assets/studentbackground.jpg"); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   background-color: #f9fafb;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; */
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
-@media (max-width: 480px) {
-  input {
-    width: 10% !important;
+@layer base {
+  .blue_btn {
+    @apply bg-indigo-600 text-white px-4 py-2 rounded col-span-2 hover:bg-[#000080] transition-all duration-500;
   }
 }

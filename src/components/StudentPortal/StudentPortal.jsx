@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-//import axios from "axios";
+import axios from "axios";
 import "./StudentPortal.css";
-//import Resemble from "resemblejs";
 import logo from "../assets/unilorin_logo2.png";
-import photo from "../assets/photo.png";
+// import photo from "../assets/photo.png";
 
 function StudentPortal() {
   const universityData = {
@@ -228,26 +227,42 @@ function StudentPortal() {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email address is invalid";
     }
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
-    } else if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(formData.password)
-    ) {
-      newErrors.password =
-        "Password must contain at least one uppercase letter, one lowercase letter, and one number";
-    }
+    // if (!formData.password) {
+    //   newErrors.password = "Password is required";
+    // } else if (formData.password.length < 8) {
+    //   newErrors.password = "Password must be at least 8 characters";
+    // } else if (
+    //   !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(formData.password)
+    // ) {
+    //   newErrors.password =
+    //     "Password must contain at least one uppercase letter, one lowercase letter, and one number";
+    // }
     if (!formData.gender) newErrors.gender = "Gender is required";
     if (!formData.level) newErrors.level = "level is required";
     if (!formData.photo) newErrors.photo = "Passport photo is required";
     return newErrors;
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      console.log(formData);
+      const user = new FormData();
+      user.append("fullName", formData.fullName);
+      user.append("department", formData.department);
+      user.append("faculty", formData.faculty);
+      user.append("matricNumber", formData.matricNumber);
+      user.append("level", formData.level);
+      user.append("password", formData.password);
+      user.append("phote", formData.photo);
+      user.append("gender", formData.gender);
+      user.append("email", formData.email);
+
+      console.log(user);
+      const res = await axios.post(
+        "https://studentbackendportal.onrender.com/auth/register/",
+        user
+      );
+      console.log(res);
     } else {
       setErrors(validationErrors);
     }
@@ -256,7 +271,7 @@ function StudentPortal() {
     <div className="p-[2rem] flex items-center justify-center bg-gray-50">
       <div className="bg-white p-8 rounded   sm:w-[70%] m-auto">
         <img src={logo} className="w-20 h-20 mx-auto mb-6" alt="Logo" />
-        <h1 className="text-2xl font-bold text-center mb-4 text-[#000080]">
+        <h1 className="text-2xl font-bold text-center mb-4 text-indigo-600">
           Register Here
         </h1>
         <p className="text-center mb-8 text-gray-600">
@@ -277,16 +292,14 @@ function StudentPortal() {
               "."
             )}
             <input
+              required
               type="file"
               ref={inputRef}
               onChange={handleImageChange}
               style={{ display: "none" }}
             />
           </div>
-          <button
-            className="bg-[#000080] text-white px-4 py-2 rounded mt-4"
-            onClick={handleImageClick}
-          >
+          <button className="blue_btn" onClick={handleImageClick}>
             Upload Image
           </button>
           {progress.started && (
@@ -304,6 +317,7 @@ function StudentPortal() {
               Fullname
             </label>
             <input
+              required
               type="text"
               name="fullName"
               value={formData.fullName}
@@ -321,6 +335,7 @@ function StudentPortal() {
               Matric Number
             </label>
             <input
+              required
               type="text"
               name="matricNumber"
               value={formData.matricNumber}
@@ -373,6 +388,7 @@ function StudentPortal() {
               Email
             </label>
             <input
+              required
               type="email"
               name="email"
               value={formData.email}
@@ -388,6 +404,7 @@ function StudentPortal() {
               Password
             </label>
             <input
+              required
               type="password"
               name="password"
               value={formData.password}
@@ -435,17 +452,14 @@ function StudentPortal() {
             {errors.level && <p className="text-red-500">{errors.level}</p>}
           </div>
 
-          <button
-            className="bg-[#000080] text-white px-4 py-2 rounded col-span-2"
-            onClick={handleSubmit}
-          >
+          <button className="blue_btn" onClick={handleSubmit} type="submit">
             Submit
           </button>
         </form>
         <div className="sign-up flex items-center justify-center mt-4">
           Already have an account?
           <Link to="/login" className="text-blue-800 px-1">
-            Sign in
+            Log in
           </Link>
         </div>
       </div>

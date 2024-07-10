@@ -46,7 +46,7 @@ export default function Sidebar() {
               text="Dashboard"
               to="/"
               id="dashboard"
-              link="/dashboard"
+              link="/"
             />
             <SidebarItem
               icon={
