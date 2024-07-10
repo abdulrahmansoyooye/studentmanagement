@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../assets/unilorin_logo2.png";
+import loader from "../../assets/loader.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import { useSession } from "../../../context/session";
 function Login() {
   const [data, setData] = useState({
@@ -18,7 +20,10 @@ function Login() {
   };
   const [errors, setErrors] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
+    setLoading(true);
+
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -26,10 +31,14 @@ function Login() {
         data
       );
       if (response.status === 200) {
+        setLoading(false);
+
         updateSessionData(response.data);
         navigate("/");
       }
     } catch (error) {
+      setLoading(false);
+
       setErrors(`${error.response.data.message} Please try again`);
     }
   };
@@ -84,7 +93,15 @@ function Login() {
               <p>Remember for 30 days</p>
             </div>
           </div>
-          <button className="blue_btn w-full" type="submit">
+          <button
+            className="flex justify-center items-center blue_btn gap-[1rem] w-full"
+            onClick={handleSubmit}
+            type="submit"
+            disabled={loading}
+          >
+            {loading && (
+              <img src={loader} className="w-[20px] h-[20px] " alt="Logo" />
+            )}
             Login
           </button>
 

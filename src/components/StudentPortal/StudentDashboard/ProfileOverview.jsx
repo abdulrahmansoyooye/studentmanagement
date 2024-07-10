@@ -41,24 +41,26 @@ const ProfileOverview = ({ userData }) => {
         <h2 className="text-lg font-semibold mt-2">{user.fullName}</h2>
       </div>
       <div className="">
-        <p className="text-sm text-gray-600  mb-6">
-          <strong>Matric No:</strong> {user.matricNubmer}
-        </p>
-        <p className="text-gray-600 mb-6">
-          <strong>Department:</strong> {user.department}
-        </p>
-        <p className="text-gray-600 mb-6">
-          <strong>Faculty:</strong> {user.faculty}
-        </p>
-        <p className="text-gray-600 mb-6">
-          <strong>Level:</strong> {user.level}
-        </p>
-        <p className="text-gray-600 mb-6">
-          <strong>Email:</strong> {user.email}
-        </p>
-        <p className="text-gray-600 ">
-          <strong>Phone Number:</strong> 07011280726
-        </p>
+        <pdiv className="text-sm text-gray-600  mb-6 flex  justify-around w-full ">
+          <strong>Matric No</strong>{" "}
+          <p className="text-left">{user.matricNubmer}</p>
+        </pdiv>
+        <div className="text-gray-600 mb-6 flex w-full  justify-between">
+          <strong>Department</strong>{" "}
+          <p className="text-left">{user.department}</p>
+        </div>
+        <div className="text-gray-600 mb-6 flex w-full  justify-between">
+          <strong>Faculty</strong> <p className="text-left"> {user.faculty}</p>
+        </div>
+        <div className="text-gray-600 mb-6 flex w-full  justify-between">
+          <strong>Level </strong> <p className="text-left">{user.level}</p>
+        </div>
+        <div className="text-gray-600 mb-6 flex w-full  justify-between">
+          <strong>Email </strong> <p className="text-left">{user.email}</p>
+        </div>
+        <div className="text-gray-600 flex justify-between w-full">
+          <strong>Phone Number </strong> <p>07011280726</p>
+        </div>
       </div>
     </div>
   );

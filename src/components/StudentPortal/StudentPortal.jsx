@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./StudentPortal.css";
 import logo from "../assets/unilorin_logo2.png";
+import loader from "../assets/loader.svg";
 // import photo from "../assets/photo.png";
 
 function StudentPortal() {
@@ -227,24 +228,18 @@ function StudentPortal() {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email address is invalid";
     }
-    // if (!formData.password) {
-    //   newErrors.password = "Password is required";
-    // } else if (formData.password.length < 8) {
-    //   newErrors.password = "Password must be at least 8 characters";
-    // } else if (
-    //   !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(formData.password)
-    // ) {
-    //   newErrors.password =
-    //     "Password must contain at least one uppercase letter, one lowercase letter, and one number";
-    // }
+
     if (!formData.gender) newErrors.gender = "Gender is required";
     if (!formData.level) newErrors.level = "level is required";
     if (!formData.photo) newErrors.photo = "Passport photo is required";
+
     return newErrors;
   };
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
       const user = new FormData();
@@ -265,12 +260,18 @@ function StudentPortal() {
           user
         );
         if (res.status === 201) {
+          setLoading(false);
+
           navigate("/login");
         }
       } catch (error) {
+        setLoading(false);
+
         setErrors({ message: "Registration Failed. Please try again" });
       }
     } else {
+      setLoading(false);
+
       setErrors(validationErrors);
     }
   };
@@ -460,7 +461,15 @@ function StudentPortal() {
             {errors.level && <p className="text-red-500">{errors.level}</p>}
           </div>
 
-          <button className="blue_btn" onClick={handleSubmit} type="submit">
+          <button
+            className="flex justify-center items-center blue_btn gap-[1rem]"
+            onClick={handleSubmit}
+            type="submit"
+            disabled={loading}
+          >
+            {loading && (
+              <img src={loader} className="w-[20px] h-[20px] " alt="Logo" />
+            )}
             Submit
           </button>
         </form>
