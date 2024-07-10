@@ -29,7 +29,7 @@ const IdCardDetails = () => {
         <div
           className={`${
             message === "Your Id Card is Pending" && "bg-yellow-400"
-          } text-center  text-white/100 p-[1rem] rounded-md w-full my-4`}
+          } text-center  text-slate-800 p-[1rem] rounded-md w-full my-4`}
         >
           {" "}
           {message}
