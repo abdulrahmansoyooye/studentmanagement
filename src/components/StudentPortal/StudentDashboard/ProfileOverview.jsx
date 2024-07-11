@@ -26,37 +26,33 @@ const ProfileOverview = ({ userData }) => {
     })();
   }, []);
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className=" rounded-md p-8  bg-white  h-full">
       <div className="text-center mb-8 ">
         <img
-          src={user.profilePicture || "https://via.placeholder.com/150"}
+          src={user.photo || "https://via.placeholder.com/150"}
           alt="Profile"
           className="rounded-full w-24 h-24 mx-auto"
         />
         <h2 className="text-lg font-semibold mt-2">{user.fullName}</h2>
       </div>
       <div className="">
-        <pdiv className="text-sm text-gray-600  mb-6 flex  justify-around w-full ">
+        <pdiv className="text-sm text-gray-600  mb-6 flex  justify-between w-full ">
           <strong>Matric No</strong>{" "}
-          <p className="text-left">{user.matricNubmer}</p>
+          <p className="text-left">{user.matricNumber}</p>
         </pdiv>
         <div className="text-gray-600 mb-6 flex w-full  justify-between">
           <strong>Department</strong>{" "}
-          <p className="text-left">{user.department}</p>
+          <p className="text-right">{user.department}</p>
         </div>
         <div className="text-gray-600 mb-6 flex w-full  justify-between">
-          <strong>Faculty</strong> <p className="text-left"> {user.faculty}</p>
+          <strong>Faculty</strong> <p className="text-right"> {user.faculty}</p>
         </div>
         <div className="text-gray-600 mb-6 flex w-full  justify-between">
-          <strong>Level </strong> <p className="text-left">{user.level}</p>
+          <strong>Level </strong> <p className="text-right">{user.level}</p>
         </div>
         <div className="text-gray-600 mb-6 flex w-full  justify-between">
-          <strong>Email </strong> <p className="text-left">{user.email}</p>
+          <strong>Email </strong> <p className="text-right">{user.email}</p>
         </div>
         <div className="text-gray-600 flex justify-between w-full">
           <strong>Phone Number </strong> <p>07011280726</p>

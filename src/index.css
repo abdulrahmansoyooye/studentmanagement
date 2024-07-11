@@ -11,6 +11,6 @@ body {
 
 @layer base {
   .blue_btn {
-    @apply bg-indigo-600 text-white px-4 py-2 rounded col-span-2 hover:bg-[#000080] transition-all duration-500;
+    @apply bg-indigo-600 text-white px-4 py-2 rounded hover:bg-[#000080] transition-all duration-500;
   }
 }
