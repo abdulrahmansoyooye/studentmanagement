@@ -1,6 +1,6 @@
 export const initialUserData = {
-  name: "Loading",
-  matric: "Loading",
+  fullName: "Loading",
+  matricNumber: "Loading",
   department: "Loading",
   faculty: "Loading",
   level: "Loading",

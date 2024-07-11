@@ -1,34 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSession } from "../../context/session";
 
-const IdCardDetails = () => {
-  const { sessionData } = useSession();
-  const { userId } = sessionData;
-  const { token } = sessionData;
-  const [message, setMessage] = useState("");
-  const [data, setData] = useState({});
-  useEffect(() => {
-    (async function fetchUserData() {
-      try {
-        const response = await fetch(
-          `https://studentbackendportal.onrender.com/idcard/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const data = await response.json();
-        if (response.status === 202) {
-          setMessage("pending");
-        } else {
-          setData(data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch user data:", error);
-      }
-    })();
-  }, []);
+const IdCardDetails = ({ message, data }) => {
   return (
     <div className="h-full w-full">
       <div className=" bg-white p-6 w-full h-full rounded-md">
@@ -51,7 +24,7 @@ const IdCardDetails = () => {
             </label>
             <input
               disabled={true}
-              value={data.fullName}
+              value={data.fullName || "Loading"}
               type="text"
               className="mt-1  w-full rounded-md p-2 border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500"
               placeholder=" Your full name"
@@ -64,7 +37,7 @@ const IdCardDetails = () => {
               </label>
               <input
                 disabled={true}
-                value={data.level}
+                value={data.level || "Loading"}
                 type="text"
                 className="mt-1  w-full rounded-md border-gray-300 border p-2 focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your Level"
@@ -76,7 +49,7 @@ const IdCardDetails = () => {
               </label>
               <input
                 disabled={true}
-                value={data.matricNimber}
+                value={data.matricNimber || "Loading"}
                 type="email"
                 className="mt-1  w-full rounded-md p-2 border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your matric number"
@@ -88,7 +61,7 @@ const IdCardDetails = () => {
               </label>
               <input
                 disabled={true}
-                value={data.department}
+                value={data.department || "Loading"}
                 type="text"
                 className="mt-1  w-full rounded-md border-gray-300 p-2 border focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your phone number"
@@ -99,7 +72,7 @@ const IdCardDetails = () => {
                 Email
               </label>
               <input
-                value={data.email}
+                value={data.email || "Loading"}
                 disabled={true}
                 type="email"
                 className="mt-1  w-full rounded-md border-gray-300 border p-2 focus:border-indigo-500 focus:ring-indigo-500"

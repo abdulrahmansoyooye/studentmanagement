@@ -37,10 +37,10 @@ const ProfileOverview = ({ userData }) => {
         <h2 className="text-lg font-semibold mt-2">{user.fullName}</h2>
       </div>
       <div className="">
-        <pdiv className="text-sm text-gray-600  mb-6 flex  justify-between w-full ">
+        <div className="text-sm text-gray-600  mb-6 flex  justify-between w-full ">
           <strong>Matric No</strong>{" "}
           <p className="text-left">{user.matricNumber}</p>
-        </pdiv>
+        </div>
         <div className="text-gray-600 mb-6 flex w-full  justify-between">
           <strong>Department</strong>{" "}
           <p className="text-right">{user.department}</p>

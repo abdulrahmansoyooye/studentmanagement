@@ -29,28 +29,30 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="fixed h-screen bg-white mr-[3rem] mt-[3rem]">
+    <aside className="fixed h-[100vh] bg-white  pt-[5rem]">
+      <div className="  mt-[4rem] p-4 pb-2 flex justify-between items-center ">
+        <button
+          onClick={handleToggle}
+          className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100 "
+        >
+          {expanded ? <ChevronFirst /> : <ChevronLast />}
+        </button>
+      </div>
       <nav
-        className={`h-full flex flex-col mt-[5rem] justify-between  shadow-sm transition-all duration-300 `}
+        className={`h-full flex flex-col  justify-between  shadow-sm transition-all duration-300 `}
       >
-        <div className=" p-4 pb-2 flex justify-between items-center ">
-          {/* Adjusted placement to top-right corner */}
-          <button
-            onClick={handleToggle}
-            className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100 ml-auto"
-          >
-            {expanded ? <ChevronFirst /> : <ChevronLast />}
-          </button>
-        </div>
         <SidebarContext.Provider value={{ expanded, openItem, setOpenItem }}>
-          <ul className="flex-1 px-3">
-            <SidebarItem
-              icon={<LayoutDashboard size={24} />}
-              text="Dashboard"
-              to="/"
-              id="dashboard"
-              link="/"
-            />
+          <ul className="flex-1  px-3">
+            <div className="p-[0.2rem] rounded-lg ml-auto bg-gray-50">
+              <SidebarItem
+                icon={<LayoutDashboard size={24} />}
+                text="Dashboard"
+                to="/"
+                id="dashboard"
+                link="/"
+              />
+            </div>
+
             <SidebarItem
               icon={
                 <img src={identityCardIcon} alt="Id Card" className="w-5" />
