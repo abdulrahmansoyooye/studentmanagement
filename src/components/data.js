@@ -5,5 +5,5 @@ export const initialUserData = {
   faculty: "Loading",
   level: "Loading",
   email: "Loding",
-  phoneNumber: "Loading",
+  gender: "Loading",
 };

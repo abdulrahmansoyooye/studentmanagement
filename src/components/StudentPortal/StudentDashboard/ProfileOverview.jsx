@@ -55,7 +55,7 @@ const ProfileOverview = ({ userData }) => {
           <strong>Email </strong> <p className="text-right">{user.email}</p>
         </div>
         <div className="text-gray-600 flex justify-between w-full">
-          <strong>Phone Number </strong> <p>07011280726</p>
+          <strong>Gender </strong> <p>{user.gender}</p>
         </div>
       </div>
     </div>

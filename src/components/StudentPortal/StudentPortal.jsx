@@ -462,14 +462,14 @@ function StudentPortal() {
           </div>
 
           <button
-            className="flex justify-center items-center blue_btn gap-[1rem]"
+            className="flex justify-center items-center  blue_btn gap-[1rem] w-full"
             onClick={handleSubmit}
             type="submit"
             disabled={loading}
           >
-            {loading && (
+            {/* {loading && (
               <img src={loader} className="w-[20px] h-[20px] " alt="Logo" />
-            )}
+            )} */}
             Submit
           </button>
         </form>

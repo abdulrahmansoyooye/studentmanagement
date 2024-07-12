@@ -3,7 +3,7 @@ import { useSession } from "../../context/session";
 
 const IdCardDetails = ({ message, data }) => {
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full sm:w-[70%]">
       <div className=" bg-white p-6 w-full h-full rounded-md">
         <h2 className="text-xl font-semibold mb-4">My ID Card Details</h2>
         <div
@@ -24,7 +24,7 @@ const IdCardDetails = ({ message, data }) => {
             </label>
             <input
               disabled={true}
-              value={data.fullName || "Loading"}
+              value={data.fullName || "Pending"}
               type="text"
               className="mt-1  w-full rounded-md p-2 border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500"
               placeholder=" Your full name"
@@ -37,7 +37,7 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.level || "Loading"}
+                value={data.level || "Pending"}
                 type="text"
                 className="mt-1  w-full rounded-md border-gray-300 border p-2 focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your Level"
@@ -49,7 +49,7 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.matricNimber || "Loading"}
+                value={data.matricNimber || "Pending"}
                 type="email"
                 className="mt-1  w-full rounded-md p-2 border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your matric number"
@@ -61,7 +61,7 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.department || "Loading"}
+                value={data.department || "Pending"}
                 type="text"
                 className="mt-1  w-full rounded-md border-gray-300 p-2 border focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your phone number"
@@ -72,7 +72,7 @@ const IdCardDetails = ({ message, data }) => {
                 Email
               </label>
               <input
-                value={data.email || "Loading"}
+                value={data.email || "Pending"}
                 disabled={true}
                 type="email"
                 className="mt-1  w-full rounded-md border-gray-300 border p-2 focus:border-indigo-500 focus:ring-indigo-500"
@@ -84,7 +84,7 @@ const IdCardDetails = ({ message, data }) => {
             type="button"
             className="mt-4 w-full blue_btn text-white py-2 rounded-md"
           >
-            Scan QR Code
+            Request a card
           </button>
         </form>
       </div>

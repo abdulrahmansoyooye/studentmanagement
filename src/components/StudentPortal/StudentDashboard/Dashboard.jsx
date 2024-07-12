@@ -39,7 +39,9 @@ const Dashboard = () => {
     <div className="w-full">
       {/* <Header /> */}
       <div className="flex max-lg:flex-col gap-[1rem] w-full ">
-        <ProfileOverview />
+        <div className="sm:w-[40%]">
+          <ProfileOverview />
+        </div>
         <IdCardDetails data={data} message={message} />
       </div>
       <LatestNews />

@@ -11,6 +11,7 @@ import {
   Edit,
   Edit3,
   LoaderPinwheel,
+  Edit3Icon,
 } from "lucide-react";
 import logo from "../../assets/sdm2_logo.png";
 import identityCardIcon from "../../assets/id-card.png";
@@ -77,7 +78,7 @@ export default function Sidebar() {
               link="/profile-overview"
             />
             <SidebarItem
-              icon={<Edit3 size={24} />}
+              icon={<Edit size={24} />}
               text="Edit Profile"
               to="/edit-profile"
               id="profile"
