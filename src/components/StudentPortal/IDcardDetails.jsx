@@ -6,16 +6,21 @@ const IdCardDetails = ({ message, data }) => {
     <div className="h-full w-full sm:w-[70%]">
       <div className=" bg-white p-6 w-full h-full rounded-md">
         <h2 className="text-xl font-semibold mb-4">My ID Card Details</h2>
-        <div
-          className={`${
-            message === "pending" ? "bg-yellow-400" : "bg-green-400"
-          } text-center  text-slate-800 p-[1rem] rounded-md w-full my-4`}
-        >
-          {" "}
-          {message === "pending"
-            ? "Your Idcard is Pending"
-            : "Your idcard has been created"}
-        </div>
+        {message === "pending" && (
+          <div className="text-center bg-yellow-500 text-white  p-[1rem] rounded-md w-full my-4">
+            Your Idcard is Pending
+          </div>
+        )}
+        {message === "error" && (
+          <div className="text-center bg-red-500 text-white  p-[1rem] rounded-md w-full my-4">
+            There was an Error. Please Request for an Idcard
+          </div>
+        )}
+        {message === "success" && (
+          <div className="text-center bg-green-500 text-white  p-[1rem] rounded-md w-full my-4">
+            Your Idcard has been Created
+          </div>
+        )}
 
         <form className="grid grid-cols-1 gap-[2rem] max-lg:flex flex-col ">
           <div className="flex flex-col gap-[1rem]">

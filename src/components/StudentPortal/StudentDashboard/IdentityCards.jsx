@@ -27,6 +27,11 @@ const IdentityCards = () => {
         const data = await response.data;
         if (response.status === 202) {
           setMessage("pending");
+        } else if (response.status === 200) {
+          setMessage("success");
+          setData(data);
+        } else {
+          setMessage("error");
         }
         setData(data);
       } catch (error) {
