@@ -30,7 +30,10 @@ const ProfileOverview = ({ userData }) => {
     <div className=" rounded-md p-8  bg-white  h-full">
       <div className="text-center mb-8 ">
         <img
-          src={user.photo || "https://via.placeholder.com/150"}
+          src={
+            `https://studentbackendportal.onrender.com/assets/${user.photo}` ||
+            "https://via.placeholder.com/150"
+          }
           alt="Profile"
           className="rounded-full w-24 h-24 mx-auto"
         />

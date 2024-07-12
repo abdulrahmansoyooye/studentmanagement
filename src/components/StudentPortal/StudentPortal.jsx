@@ -249,11 +249,12 @@ function StudentPortal() {
       user.append("matricNumber", formData.matricNumber);
       user.append("level", formData.level);
       user.append("password", formData.password);
-      user.append("photo", formData.photo);
+      user.append("photoFile", formData.photo);
       user.append("gender", formData.gender);
       user.append("email", formData.email);
+      user.append("photo", formData.photo.name);
 
-      console.log(user);
+      console.log( formData.photo.name);
       try {
         const res = await axios.post(
           "https://studentbackendportal.onrender.com/auth/register/",
@@ -296,6 +297,7 @@ function StudentPortal() {
                 src={URL.createObjectURL(image)}
                 alt="Uploaded"
                 className="w-full h-full rounded-full"
+            
               />
             ) : (
               "."
@@ -306,6 +308,7 @@ function StudentPortal() {
               ref={inputRef}
               onChange={handleImageChange}
               style={{ display: "none" }}
+              accept="image/*"
             />
           </div>
           <button className="blue_btn" onClick={handleImageClick}>

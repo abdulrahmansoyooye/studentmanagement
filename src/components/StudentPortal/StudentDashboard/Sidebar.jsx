@@ -18,17 +18,23 @@ import identityCardIcon from "../../assets/id-card.png";
 import registrationIcon from "../../assets/contact-form.png";
 import documentIcon from "../../assets/manage.png";
 import notificationIcon from "../../assets/notification.png";
+import { useSession } from "../../../context/session";
 
 const SidebarContext = createContext();
 
 export default function Sidebar() {
   const [expanded, setExpanded] = useState(false);
+  const [logoutToggle, setLogoutToggle] = useState(true);
   const [openItem, setOpenItem] = useState(null); // State to keep track of the currently open item
+  const { logout } = useSession();
 
   const handleToggle = () => {
     setExpanded(!expanded);
   };
-
+  const handleLogout = () => {
+    logout();
+    window.location.reload();
+  };
   return (
     <aside className="fixed h-[100vh] bg-white  pt-[5rem]">
       <div className="  mt-[4rem] p-4 pb-2 flex justify-between items-center ">
@@ -84,20 +90,24 @@ export default function Sidebar() {
               id="profile"
               link="/edit-profile"
             />
+            <div className="relative flex border flex-col gap-[1rem]  border-t  pt-[1rem] items-center">
+              <div
+                className={`left-[50px] cursor-pointer absolute top-0 p-[1rem] bg-gray-50 ${
+                  logoutToggle ? "hidden" : "flex"
+                } rounded-md `}
+                onClick={handleLogout}
+              >
+                Logout
+              </div>
+              <img
+                src="#"
+                alt="Profile"
+                className="w-10 h-[20] cursor-pointer rounded-full bg-gray-50 p-[.5rem]"
+                onClick={() => setLogoutToggle(!logoutToggle)}
+              />
+            </div>
           </ul>
         </SidebarContext.Provider>
-        <div className="border-t flex p-3 items-center">
-          <img src="#" alt="Profile" className="w-10 h-10 rounded-full" />
-          <div
-            className={`flex flex-col ml-3 transition-all duration-300 ${
-              expanded ? "block" : "hidden"
-            }`}
-          >
-            <h4 className="font-semibold">Unilorin</h4>
-            <span className="text-xs text-gray-600">ID Management</span>
-          </div>
-          <MoreVertical size={20} className="ml-auto" />
-        </div>
       </nav>
     </aside>
   );
