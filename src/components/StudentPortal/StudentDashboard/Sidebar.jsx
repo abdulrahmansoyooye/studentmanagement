@@ -1,5 +1,5 @@
 // src/student-dashboard/Sidebar.jsx
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ChevronFirst,
@@ -27,6 +27,29 @@ export default function Sidebar() {
   const [logoutToggle, setLogoutToggle] = useState(true);
   const [openItem, setOpenItem] = useState(null); // State to keep track of the currently open item
   const { logout } = useSession();
+  const { sessionData } = useSession();
+  const [user, setUser] = useState("");
+
+  const { userId } = sessionData;
+  const { token } = sessionData;
+  useEffect(() => {
+    (async function fetchUserData() {
+      try {
+        const response = await fetch(
+          `https://studentbackendportal.onrender.com/users/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    })();
+  }, []);
 
   const handleToggle = () => {
     setExpanded(!expanded);
@@ -90,7 +113,7 @@ export default function Sidebar() {
               id="profile"
               link="/edit-profile"
             />
-            <div className="relative flex border flex-col gap-[1rem]  border-t  pt-[1rem] items-center">
+            <div className="relative flex  flex-col gap-[1rem]  border-t  pt-[1rem] items-center">
               <div
                 className={`left-[50px] cursor-pointer absolute top-0 p-[1rem] bg-gray-50 ${
                   logoutToggle ? "hidden" : "flex"
@@ -100,9 +123,12 @@ export default function Sidebar() {
                 Logout
               </div>
               <img
-                src="#"
+                src={
+                  `https://studentbackendportal.onrender.com/assets/${user.photo}` ||
+                  "https://via.placeholder.com/150"
+                }
                 alt="Profile"
-                className="w-10 h-[20] cursor-pointer rounded-full bg-gray-50 p-[.5rem]"
+                className="w-10 h-[20] cursor-pointer rounded-full bg-gray-50 "
                 onClick={() => setLogoutToggle(!logoutToggle)}
               />
             </div>
