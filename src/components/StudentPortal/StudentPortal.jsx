@@ -254,7 +254,7 @@ function StudentPortal() {
       user.append("email", formData.email);
       user.append("photo", formData.photo.name);
 
-      console.log( formData.photo.name);
+      console.log(formData.photo.name);
       try {
         const res = await axios.post(
           "https://studentbackendportal.onrender.com/auth/register/",
@@ -280,7 +280,7 @@ function StudentPortal() {
     <div className="p-[2rem] flex items-center justify-center bg-gray-50">
       <div className="bg-white p-8 rounded   sm:w-[70%] m-auto">
         <img src={logo} className="w-20 h-20 mx-auto mb-6" alt="Logo" />
-        {errors && <p>{errors.message}</p>}
+
         <h1 className="text-2xl font-bold text-center mb-4 text-indigo-600">
           Register Here
         </h1>
@@ -297,7 +297,6 @@ function StudentPortal() {
                 src={URL.createObjectURL(image)}
                 alt="Uploaded"
                 className="w-full h-full rounded-full"
-            
               />
             ) : (
               "."
@@ -463,16 +462,18 @@ function StudentPortal() {
             </select>
             {errors.level && <p className="text-red-500">{errors.level}</p>}
           </div>
-
+          {errors && (
+            <p className="text-red-500 text-center">{errors.message}</p>
+          )}
           <button
             className="flex justify-center items-center  blue_btn gap-[1rem] w-full"
             onClick={handleSubmit}
             type="submit"
             disabled={loading}
           >
-            {/* {loading && (
+            {loading && (
               <img src={loader} className="w-[20px] h-[20px] " alt="Logo" />
-            )} */}
+            )}
             Submit
           </button>
         </form>
