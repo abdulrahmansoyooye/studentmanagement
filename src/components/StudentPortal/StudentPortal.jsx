@@ -319,154 +319,155 @@ function StudentPortal() {
           {msg && <span>{msg}</span>}
           {errors.photo && <p className="text-red-500">{errors.photo}</p>}
         </div>
-        <form
-          className="grid grid-cols-1 sm:grid-cols-2 gap-[2rem] max-lg:flex flex-col mt-8"
-          onSubmit={handleSubmit}
-        >
-          <div className="">
-            <label htmlFor="fullName" className="block text-gray-700">
-              Fullname
-            </label>
-            <input
-              required
-              type="text"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              placeholder="Full name"
-              className="w-full px-4 py-2 border rounded"
-            />
-            {errors.fullName && (
-              <p className="text-red-500">{errors.fullName}</p>
-            )}
-          </div>
+        <form className=" max-lg:flex flex-col mt-8" onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[2rem]">
+            <div className="">
+              <label htmlFor="fullName" className="block text-gray-700">
+                Fullname
+              </label>
+              <input
+                required
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                placeholder="Full name"
+                className="w-full px-4 py-2 border rounded"
+              />
+              {errors.fullName && (
+                <p className="text-red-500">{errors.fullName}</p>
+              )}
+            </div>
 
-          <div>
-            <label htmlFor="matric" className="block text-gray-700">
-              Matric Number
-            </label>
-            <input
-              required
-              type="text"
-              name="matricNumber"
-              value={formData.matricNumber}
-              onChange={handleChange}
-              placeholder="Matric number"
-              className="w-full px-4 py-2 border rounded"
-            />
-            {errors.matricNumber && (
-              <p className="text-red-500">{errors.matricNumber}</p>
-            )}
-          </div>
+            <div>
+              <label htmlFor="matric" className="block text-gray-700">
+                Matric Number
+              </label>
+              <input
+                required
+                type="text"
+                name="matricNumber"
+                value={formData.matricNumber}
+                onChange={handleChange}
+                placeholder="Matric number"
+                className="w-full px-4 py-2 border rounded"
+              />
+              {errors.matricNumber && (
+                <p className="text-red-500">{errors.matricNumber}</p>
+              )}
+            </div>
 
-          <div>
-            <label htmlFor="facultySelect" className="block text-gray-700">
-              Faculty
-            </label>
-            <select
-              id="facultySelect"
-              className="w-full px-4 py-2 border rounded"
-              name="faculty"
-              value={formData.faculty}
-              onChange={handleChange}
-            >
-              <option value="">--Select a Faculty--</option>
-            </select>
-            {errors.faculty && <p className="text-red-500">{errors.faculty}</p>}
-          </div>
+            <div>
+              <label htmlFor="facultySelect" className="block text-gray-700">
+                Faculty
+              </label>
+              <select
+                id="facultySelect"
+                className="w-full px-4 py-2 border rounded"
+                name="faculty"
+                value={formData.faculty}
+                onChange={handleChange}
+              >
+                <option value="">--Select a Faculty--</option>
+              </select>
+              {errors.faculty && (
+                <p className="text-red-500">{errors.faculty}</p>
+              )}
+            </div>
 
-          <div>
-            <label htmlFor="departmentSelect" className="block text-gray-700">
-              Department
-            </label>
-            <select
-              id="departmentSelect"
-              className="w-full px-4 py-2 border rounded"
-              name="department"
-              value={formData.department}
-              onChange={handleChange}
-              disabled={!formData.faculty}
-            >
-              <option value="">--Select a Department--</option>
-            </select>
-            {errors.department && (
-              <p className="text-red-500">{errors.department}</p>
-            )}
-          </div>
+            <div>
+              <label htmlFor="departmentSelect" className="block text-gray-700">
+                Department
+              </label>
+              <select
+                id="departmentSelect"
+                className="w-full px-4 py-2 border rounded"
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                disabled={!formData.faculty}
+              >
+                <option value="">--Select a Department--</option>
+              </select>
+              {errors.department && (
+                <p className="text-red-500">{errors.department}</p>
+              )}
+            </div>
 
-          <div>
-            <label htmlFor="email" className="block text-gray-700">
-              Email
-            </label>
-            <input
-              required
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email"
-              className="w-full px-4 py-2 border rounded"
-            />
-            {errors.email && <p className="text-red-500">{errors.email}</p>}
-          </div>
+            <div>
+              <label htmlFor="email" className="block text-gray-700">
+                Email
+              </label>
+              <input
+                required
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className="w-full px-4 py-2 border rounded"
+              />
+              {errors.email && <p className="text-red-500">{errors.email}</p>}
+            </div>
 
-          <div>
-            <label htmlFor="password" className="block text-gray-700">
-              Password
-            </label>
-            <input
-              required
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Password"
-              className="w-full px-4 py-2 border rounded"
-            />
-            {errors.password && (
-              <p className="text-red-500">{errors.password}</p>
-            )}
-          </div>
+            <div>
+              <label htmlFor="password" className="block text-gray-700">
+                Password
+              </label>
+              <input
+                required
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                className="w-full px-4 py-2 border rounded"
+              />
+              {errors.password && (
+                <p className="text-red-500">{errors.password}</p>
+              )}
+            </div>
 
-          <div>
-            <label htmlFor="gender" className="block text-gray-700">
-              Gender
-            </label>
-            <select
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded"
-            >
-              <option value="">--Select a Gender--</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-            {errors.gender && <p className="text-red-500">{errors.gender}</p>}
-          </div>
+            <div>
+              <label htmlFor="gender" className="block text-gray-700">
+                Gender
+              </label>
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded"
+              >
+                <option value="">--Select a Gender--</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              {errors.gender && <p className="text-red-500">{errors.gender}</p>}
+            </div>
 
-          <div>
-            <label htmlFor="level" className="block text-gray-700">
-              Level
-            </label>
-            <select
-              name="level"
-              value={formData.level}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded"
-            >
-              <option value="">--Select a Level--</option>
-              <option value="100">100</option>
-              <option value="200">200</option>
-              <option value="300">300</option>
-            </select>
-            {errors.level && <p className="text-red-500">{errors.level}</p>}
+            <div>
+              <label htmlFor="level" className="block text-gray-700">
+                Level
+              </label>
+              <select
+                name="level"
+                value={formData.level}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded"
+              >
+                <option value="">--Select a Level--</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+              </select>
+              {errors.level && <p className="text-red-500">{errors.level}</p>}
+            </div>
           </div>
           {errors && (
             <p className="text-red-500 text-center">{errors.message}</p>
           )}
           <button
-            className="flex justify-center items-center  blue_btn gap-[1rem] w-full"
+            className="flex justify-center border mt-5 items-center blue_btn  gap-[1rem] w-full"
             onClick={handleSubmit}
             type="submit"
             disabled={loading}

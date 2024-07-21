@@ -55,8 +55,8 @@ export default function App() {
             <Route path="qr-code-display" element={<QrCodeDisplay />} />
           </Route>
 
-        
-          <Route path="notifications" element={<Notifications />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/registration-status" element={<RegistrationStatus />} />
           <Route path="/document-management" element={<DocumentManagement />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile-overview" element={<ProfileOverview />} />

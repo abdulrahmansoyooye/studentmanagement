@@ -40,30 +40,24 @@ const IdentityCards = () => {
     })();
   }, []);
   return (
-    <div className="flex flex-col gap-[2rem] p-[2rem_1rem]  w-full">
-      <div className="w-full ">
+    <div className="flex max-lg:flex-col gap-[2rem] p-[2rem_1rem]  w-full">
+      <div className="sm:w-[50%] w-full">
         <div className="flex max-lg:flex-col w-full justify-between  gap-[1rem]">
           <h2 className="text-xl font-semibold">Your ID Card</h2>
-
-          {message === "pending" && (
-            <button className=" bg-[#000080] text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none">
-              Request for an Id Card
-            </button>
-          )}
         </div>
         <div className=" bg-white p-5 rounded-lg mt-2">
           <div className="flex gap-[1rem] justify-between">
             {message !== "pending" ? (
-              <QrCodeDisplay data={data} message={message} />
+              <QrCodeDisplay data={data.qrcode} message={message} />
             ) : (
               <p className="text-sm text-center p-[1rem]">
-                Request For an id Card to Generate QR Code
+                Kindly wait for the admin to generate your Id card
               </p>
             )}
           </div>
         </div>
       </div>
-      <div className="w-full ">
+      <div className="w-full sm:w-[50%] ">
         <IdCardDetails message={message} data={data} />
       </div>
     </div>

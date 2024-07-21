@@ -3,12 +3,12 @@ import { useSession } from "../../context/session";
 
 const IdCardDetails = ({ message, data }) => {
   return (
-    <div className="h-full w-full sm:w-[70%]">
+    <div className="h-full w-full ">
       <div className=" bg-white p-6 w-full h-full rounded-md">
         <h2 className="text-xl font-semibold mb-4">My ID Card Details</h2>
         {message === "pending" && (
           <div className="text-center bg-yellow-500 text-white  p-[1rem] rounded-md w-full my-4">
-            Your Idcard is Pending
+            Your Id Card is pending
           </div>
         )}
         {message === "error" && (
@@ -18,7 +18,7 @@ const IdCardDetails = ({ message, data }) => {
         )}
         {message === "success" && (
           <div className="text-center bg-green-500 text-white  p-[1rem] rounded-md w-full my-4">
-            Your Idcard has been Created
+            Congratullations. Your Idcard is ready
           </div>
         )}
 
@@ -29,7 +29,7 @@ const IdCardDetails = ({ message, data }) => {
             </label>
             <input
               disabled={true}
-              value={data.fullName || "Pending"}
+              value={data.fullName || "Your Id Card is pending"}
               type="text"
               className="mt-1  w-full rounded-md p-2 border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500"
               placeholder=" Your full name"
@@ -42,7 +42,7 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.level || "Pending"}
+                value={data.level || "Your Id Card is pending"}
                 type="text"
                 className="mt-1  w-full rounded-md border-gray-300 border p-2 focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your Level"
@@ -54,7 +54,7 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.matricNimber || "Pending"}
+                value={data.matricNimber || "Your Id Card is pending"}
                 type="email"
                 className="mt-1  w-full rounded-md p-2 border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your matric number"
@@ -66,7 +66,7 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.department || "Pending"}
+                value={data.department || "Your Id Card is pending"}
                 type="text"
                 className="mt-1  w-full rounded-md border-gray-300 p-2 border focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your phone number"
@@ -77,7 +77,7 @@ const IdCardDetails = ({ message, data }) => {
                 Email
               </label>
               <input
-                value={data.email || "Pending"}
+                value={data.email || "Your Id Card is pending"}
                 disabled={true}
                 type="email"
                 className="mt-1  w-full rounded-md border-gray-300 border p-2 focus:border-indigo-500 focus:ring-indigo-500"
@@ -85,12 +85,6 @@ const IdCardDetails = ({ message, data }) => {
               />
             </div>
           </div>
-          <button
-            type="button"
-            className="mt-4 w-full blue_btn text-white py-2 rounded-md"
-          >
-            Request a card
-          </button>
         </form>
       </div>
     </div>

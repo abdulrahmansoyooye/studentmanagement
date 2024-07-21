@@ -40,25 +40,29 @@ const ProfileOverview = ({ userData }) => {
         <h2 className="text-lg font-semibold mt-2">{user.fullName}</h2>
       </div>
       <div className="">
-        <div className="text-sm text-gray-600  mb-6 flex  justify-between w-full ">
+        <div className="text-sm text-gray-600  mb-6 flex  justify-between flex-col gap-[1rem] w-full ">
           <strong>Matric No</strong>{" "}
-          <p className="text-left">{user.matricNumber}</p>
+          <p className="text-left flex justify-end">{user.matricNumber}</p>
         </div>
-        <div className="text-gray-600 mb-6 flex w-full  justify-between">
+        <div className="text-sm text-gray-600  mb-6 flex  justify-between flex-col gap-[1rem] w-full ">
           <strong>Department</strong>{" "}
-          <p className="text-right">{user.department}</p>
+          <p className="text-left flex justify-end">{user.department}</p>
         </div>
-        <div className="text-gray-600 mb-6 flex w-full  justify-between">
-          <strong>Faculty</strong> <p className="text-right"> {user.faculty}</p>
+        <div className="text-sm text-gray-600  mb-6 flex  justify-between flex-col gap-[1rem] w-full ">
+          <strong>Faculty</strong>{" "}
+          <p className="text-left flex justify-end"> {user.faculty}</p>
         </div>
-        <div className="text-gray-600 mb-6 flex w-full  justify-between">
-          <strong>Level </strong> <p className="text-right">{user.level}</p>
+        <div className="text-sm text-gray-600  mb-6 flex  justify-between flex-col gap-[1rem] w-full ">
+          <strong>Level </strong>{" "}
+          <p className="text-left flex justify-end">{user.level}</p>
         </div>
-        <div className="text-gray-600 mb-6 flex w-full  justify-between">
-          <strong>Email </strong> <p className="text-right">{user.email}</p>
+        <div className="text-sm text-gray-600  mb-6 flex  justify-between flex-col gap-[1rem] w-full ">
+          <strong>Email </strong>{" "}
+          <p className="text-left flex justify-end">{user.email}</p>
         </div>
-        <div className="text-gray-600 flex justify-between w-full">
-          <strong>Gender </strong> <p>{user.gender}</p>
+        <div className="text-sm text-gray-600  mb-6 flex  justify-between flex-col gap-[1rem] w-full ">
+          <strong>Gender </strong>{" "}
+          <p className="text-left flex justify-end">{user.gender}</p>
         </div>
       </div>
     </div>
