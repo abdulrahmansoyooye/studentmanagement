@@ -48,7 +48,7 @@ function Login() {
       <img src={logo} className="w-[80px] m-auto" alt="Logo" />
       <div className="wrapper">
         <form onSubmit={handleSubmit}>
-          <h1 className="text-[2rem] font-[500]">Login Your Details!</h1>
+          <h1 className="text-[2rem] font-[500]">Enter Your Details!</h1>
           <p className=" text-gray-500 text-center mt-2">
             Welcome back! Please enter your Details!
           </p>

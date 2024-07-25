@@ -29,7 +29,7 @@ const IdCardDetails = ({ message, data }) => {
             </label>
             <input
               disabled={true}
-              value={data.fullName || "Your Id Card is pending"}
+              value={data.fullName}
               type="text"
               className="mt-1  w-full rounded-md p-2 border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500"
               placeholder=" Your full name"
@@ -42,7 +42,7 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.level || "Your Id Card is pending"}
+                value={data.level}
                 type="text"
                 className="mt-1  w-full rounded-md border-gray-300 border p-2 focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your Level"
@@ -54,7 +54,7 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.matricNimber || "Your Id Card is pending"}
+                value={data.matricNimber}
                 type="email"
                 className="mt-1  w-full rounded-md p-2 border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder=" Your matric number"
@@ -66,10 +66,10 @@ const IdCardDetails = ({ message, data }) => {
               </label>
               <input
                 disabled={true}
-                value={data.department || "Your Id Card is pending"}
+                value={data.department}
                 type="text"
                 className="mt-1  w-full rounded-md border-gray-300 p-2 border focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder=" Your phone number"
+                placeholder="Your phone number"
               />
             </div>
             <div className="flex flex-col gap-[1rem]">
@@ -77,7 +77,7 @@ const IdCardDetails = ({ message, data }) => {
                 Email
               </label>
               <input
-                value={data.email || "Your Id Card is pending"}
+                value={data.email}
                 disabled={true}
                 type="email"
                 className="mt-1  w-full rounded-md border-gray-300 border p-2 focus:border-indigo-500 focus:ring-indigo-500"
