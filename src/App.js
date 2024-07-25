@@ -9,7 +9,6 @@ import Layout from "./components/StudentPortal/StudentDashboard/Layout";
 import Dashboard from "./components/StudentPortal/StudentDashboard/Dashboard.jsx";
 import Header from "./components/StudentPortal/StudentDashboard/Header.jsx";
 import Sidebar from "./components/StudentPortal/StudentDashboard/Sidebar.jsx";
-//import Users from "./components/StudentPortal/StudentDashboard/Users";
 import IdentityCards from "./components/StudentPortal/StudentDashboard/IdentityCards";
 import RegistrationStatus from "./components/StudentPortal/StudentDashboard/RegistrationStatus";
 import Notifications from "./components/StudentPortal/StudentDashboard/Notifications";

@@ -5,7 +5,8 @@ const LatestNews = () => {
     {
       title: "UNILORIN Admission List 2023/2024 Released",
       location: "University of Ilorin, Nigeria",
-      image: "https://via.placeholder.com/150",
+      image:
+        "https://www.linkedin.com/posts/oluwakemi-christiana-abikoye-46018b42_am-excited-to-invite-you-to-the-opening-ceremony-activity-7195884474738380802-LXvI",
     },
     {
       title: "New Academic Session Resumption Announced",
@@ -24,10 +25,7 @@ const LatestNews = () => {
       <h2 className="text-xl font-semibold mb-4">Latest News from UNILORIN</h2>
       <div className="flex  max-lg:flex-col gap-[1rem]">
         {news.map((item, index) => (
-          <div
-            key={index}
-            className="p-4 rounded-md overflow-hidden bg-white"
-          >
+          <div key={index} className="p-4 rounded-md overflow-hidden bg-white">
             <img
               src={item.image}
               alt={item.title}
