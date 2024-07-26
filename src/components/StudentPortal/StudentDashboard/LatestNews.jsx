@@ -1,37 +1,44 @@
 import React from "react";
+import game from "../../assets/game.jfif";
+import post from "../../assets/post.webp";
+import conference from "../../assets/conference.jfif";
 
 const LatestNews = () => {
   const news = [
     {
-      title: "UNILORIN Admission List 2023/2024 Released",
+      title: "FACULTY OF CIS HELD ITS FIRST INAUGURAL LECTURE",
       location: "University of Ilorin, Nigeria",
-      image:
-        "https://www.linkedin.com/posts/oluwakemi-christiana-abikoye-46018b42_am-excited-to-invite-you-to-the-opening-ceremony-activity-7195884474738380802-LXvI",
+      image: game,
     },
+
     {
-      title: "New Academic Session Resumption Announced",
+      title: "UNILORIN 2023/2024 Post-UTME FORM OUT",
       location: "University of Ilorin, Nigeria",
-      image: "https://via.placeholder.com/150",
+      image: post,
     },
+
     {
-      title: "UNILORIN Post-UTME Results Released",
+      title: "FACULTY OF CIS 2ND ANNUAL CONFERENCE",
       location: "University of Ilorin, Nigeria",
-      image: "https://via.placeholder.com/150",
+      image: conference,
     },
   ];
 
   return (
-    <div className="p-4  mt-4">
+    <div className="p-4 mt-4 w-full">
       <h2 className="text-xl font-semibold mb-4">Latest News from UNILORIN</h2>
-      <div className="flex  max-lg:flex-col gap-[1rem]">
+      <div className="flex gap-4">
         {news.map((item, index) => (
-          <div key={index} className="p-4 rounded-md overflow-hidden bg-white">
+          <div
+            key={index}
+            className="flex-1 p-4 rounded-md overflow-hidden bg-white"
+          >
             <img
               src={item.image}
               alt={item.title}
               className="w-full h-40 object-cover rounded-md mb-4"
             />
-            <div className="">
+            <div>
               <h3 className="font-semibold text-lg">{item.title}</h3>
               <p className="text-sm text-gray-600">{item.location}</p>
             </div>

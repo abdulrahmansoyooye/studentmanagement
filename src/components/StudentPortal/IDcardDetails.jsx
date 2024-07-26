@@ -3,7 +3,7 @@ import { useSession } from "../../context/session";
 
 const IdCardDetails = ({ message, data }) => {
   return (
-    <div className="h-full w-full ">
+    <div className="h-full w-full">
       <div className=" bg-white p-6 w-full h-full rounded-md">
         <h2 className="text-xl font-semibold mb-4">My ID Card Details</h2>
         {message === "pending" && (

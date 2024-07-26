@@ -43,14 +43,14 @@ const IdentityCards = () => {
     <div className="flex max-lg:flex-col gap-[2rem] p-[2rem_1rem]  w-full">
       <div className="sm:w-[50%] w-full">
         <div className="flex max-lg:flex-col w-full justify-between  gap-[1rem]">
-          <h2 className="text-xl font-semibold">Your ID Card</h2>
+          <h2 className="text-xl font-semibold ml-20">Your ID Card</h2>
         </div>
         <div className=" bg-white p-5 rounded-lg mt-2">
           <div className="flex gap-[1rem] justify-between">
             {message !== "pending" ? (
               <QrCodeDisplay data={data.qrcode} message={message} />
             ) : (
-              <p className="text-sm text-center p-[1rem]">
+              <p className="text-sm text-center p-[1rem] ml-20">
                 Kindly wait for the admin to generate your Id card
               </p>
             )}

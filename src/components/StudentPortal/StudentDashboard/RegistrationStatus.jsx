@@ -38,16 +38,18 @@ const IdCardStatus = () => {
   return (
     <div className="">
       <div className="text-center w-full p-6 text-2xl font-semibold">
-        <h2>Id Card Status</h2>
+        <h2 className="text-3xl">Id Card Status</h2>
       </div>
       <div className="bg-white rounded-lg  p-4 my-6 ">
-        <div className="bg-gray-50 p-8 rounded-lg mb-6 leading-loose">
-          <h2 className="text-lg font-semibold mb-2 border-b">Please Note</h2>
-          <p className="text-gray-600 leading-relaxed">
+        <div className="bg-gray-100 p-8 rounded-lg mb-6 mt-10 leading-loose">
+          <h2 className="text-lg font-semibold mb-2 border-b ml-20">
+            Please Note
+          </h2>
+          <p className="leading-relaxed ml-20">
             <p> Dear Students,</p>
             Welcome to the ID Card Status Check page. Here you can track the
             progress of your ID card application.{" "}
-            <h3 className="font-semibold">Important information</h3>
+            {/* <h3 className="font-semibold">Important information</h3>
             <p>
               If your application is under review, please revisit this page
               after 24 hours for updates.
@@ -59,7 +61,7 @@ const IdCardStatus = () => {
             <p>
               If you encounter any errors or discrepancies, please reach out to
               our support team at 09031239818.
-            </p>
+            </p> */}
           </p>
         </div>
         <div className="text-center w-full p-6 text-2xl">
