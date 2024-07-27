@@ -187,7 +187,7 @@ function StudentPortal() {
       const img = new Image();
       img.onload = () => {
         const requiredWidth = 225;
-        const requiredHeight = 225;
+        const requiredHeight = 248;
         if (img.width !== requiredWidth || img.height !== requiredHeight) {
           setErrors((prevErrors) => ({
             ...prevErrors,

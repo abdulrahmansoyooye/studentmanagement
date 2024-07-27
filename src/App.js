@@ -20,7 +20,7 @@ import ViewIdCard from "./components/StudentPortal/StudentDashboard/ViewIdCard";
 import DownloadIdCard from "./components/StudentPortal/StudentDashboard/DownloadIdCard";
 import QrCodeDisplay from "./components/StudentPortal/StudentDashboard/QrCodeDisplay";
 import IdCardDetails from "./components/StudentPortal/IDcardDetails.jsx";
-import PrintIDCard from "./components/StudentPortal/StudentDashboard/PrintIDCard";
+// import PrintIDCard from "./components/StudentPortal/StudentDashboard/PrintIDCard";
 import { useSession } from "./context/session.jsx";
 
 export default function App() {
@@ -57,7 +57,7 @@ export default function App() {
 
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/registration-status" element={<RegistrationStatus />} />
-          <Route path="/print-id-card" element={<PrintIDCard />} />
+          {/* <Route path="/print-id-card" element={<PrintIDCard />} /> */}
           <Route path="/document-management" element={<DocumentManagement />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile-overview" element={<ProfileOverview />} />
