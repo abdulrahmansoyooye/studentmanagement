@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.wrapper {
+  @apply m-auto mt-6 w-full lg:w-[800px] bg-[#fff] border-solid   text-[#000080] rounded-2xl px-11 py-14;
+}
+
+h1 {
+  @apply text-4xl text-center;
+}
+
+.input-box {
+  @apply relative w-[100%] h-[50px]  mt-16 mb-0;
+}
+.profile-wrapper {
+  @apply max-w-lg mx-auto p-6;
+}
+.profile-container {
+  @apply max-w-lg mx-auto p-6;
+}
+.profile-info {
+  @apply p-4 rounded-lg space-y-4;
+}
