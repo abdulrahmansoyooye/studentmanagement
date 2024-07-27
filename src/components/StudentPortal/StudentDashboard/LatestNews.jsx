@@ -1,14 +1,14 @@
 import React from "react";
-import game from "../../assets/game.jfif";
+// import game from "../../assets/game.jfif";
 import post from "../../assets/post.webp";
-import conference from "../../assets/conference.jfif";
+// import conference from "../../assets/conference.jfif";
 
 const LatestNews = () => {
   const news = [
     {
       title: "FACULTY OF CIS HELD ITS FIRST INAUGURAL LECTURE",
       location: "University of Ilorin, Nigeria",
-      image: game,
+      // image: game,
     },
 
     {
@@ -20,14 +20,14 @@ const LatestNews = () => {
     {
       title: "FACULTY OF CIS 2ND ANNUAL CONFERENCE",
       location: "University of Ilorin, Nigeria",
-      image: conference,
+      // image: conference,
     },
   ];
 
   return (
     <div className="p-4 mt-4 w-full">
       <h2 className="text-xl font-semibold mb-4">Latest News from UNILORIN</h2>
-      <div className="flex gap-4">
+      <div className="flex max-lg:flex-col gap-4">
         {news.map((item, index) => (
           <div
             key={index}
