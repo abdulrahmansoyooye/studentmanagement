@@ -1,41 +1,38 @@
 // src/student-dashboard/Sidebar.jsx
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { createContext, useContext, useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { NavLink } from "react-router-dom";
 import {
-  ChevronFirst,
-  ChevronLast,
   LayoutDashboard,
-  UserCircle,
-  Edit,
-  LoaderPinwheel,
-  StopCircle,
-  StopCircleIcon,
-  Delete,
+  Id,
+  FileText,
+  Bell,
+  User,
+  Edit3,
+  LogOut,
+  Menu,
+  X,
 } from "lucide-react";
 import logo from "../../assets/sdm2_logo.png";
-import identityCardIcon from "../../assets/id-card.png";
-import registrationIcon from "../../assets/contact-form.png";
-import documentIcon from "../../assets/manage.png";
-import notificationIcon from "../../assets/notification.png";
 import { useSession } from "../../../context/session";
+
+const API_BASE = process.env.REACT_APP_API_URL || "https://studentbackendportal.onrender.com";
 
 const SidebarContext = createContext();
 
 export default function Sidebar() {
+  const { logout, sessionData } = useSession();
+  const { userId, token } = sessionData;
   const [expanded, setExpanded] = useState(false);
   const [logoutToggle, setLogoutToggle] = useState(true);
   const [openItem, setOpenItem] = useState(null); // State to keep track of the currently open item
-  const { logout } = useSession();
-  const { sessionData } = useSession();
   const [user, setUser] = useState("");
   const [mobileNav, setMobileNav] = useState(false);
-  const { userId } = sessionData;
-  const { token } = sessionData;
+
   useEffect(() => {
     (async function fetchUserData() {
       try {
         const response = await fetch(
-          `https://studentbackendportal.onrender.com/users/${userId}`,
+          `${API_BASE}/users/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -48,7 +45,7 @@ export default function Sidebar() {
         console.error("Failed to fetch user data:", error);
       }
     })();
-  }, []);
+  }, [API_BASE, token, userId]);
 
   const handleToggle = () => {
     setExpanded(!expanded);
@@ -64,7 +61,7 @@ export default function Sidebar() {
           onClick={() => setMobileNav((prev) => !prev)}
           className="p-1.5 rounded-lg bg-white "
         >
-          {expanded ? <ChevronFirst /> : <ChevronLast />}
+          {expanded ? <X /> : <Menu />}
         </button>
       </div>
       {mobileNav && (
@@ -74,7 +71,7 @@ export default function Sidebar() {
               onClick={() => setMobileNav((prev) => !prev)}
               className="p-1.5 rounded-lg bg-white "
             >
-              <Delete />
+              <LogOut />
             </button>
           </div>
           <div className="  mt-[2rem] p-4 pb-2 flex justify-between items-center ">
@@ -82,7 +79,7 @@ export default function Sidebar() {
               onClick={handleToggle}
               className="p-1.5 rounded-lg bg-white "
             >
-              {expanded ? <ChevronFirst /> : <ChevronLast />}
+              {expanded ? <X /> : <Menu />}
             </button>
           </div>
           <nav
