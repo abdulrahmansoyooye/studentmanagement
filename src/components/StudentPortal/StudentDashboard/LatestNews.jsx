@@ -26,7 +26,7 @@ const LatestNews = () => {
 
   return (
     <div className="p-4 mt-4 w-full">
-      <h2 className="text-xl font-semibold mb-4">Latest News from UNILORIN</h2>
+      <h2 className="text-xl font-semibold mb-4">Latest News from Newgate University</h2>
       <div className="flex max-lg:flex-col gap-4">
         {news.map((item, index) => (
           <div

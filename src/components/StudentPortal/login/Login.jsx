@@ -107,7 +107,7 @@ export default function Login() {
               />
             </div>
 
-            <div className="relative">
+            <div className="relative mb-3">
               <label htmlFor="password" className="block text-gray-700 mb-2">
                 Password
               </label>
