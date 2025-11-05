@@ -40,18 +40,43 @@ const Dashboard = () => {
     })();
   }, []);
   return (
-    <div className="w-full">
-      {/* <Header /> */}
-      <div className="flex max-lg:flex-col gap-[1rem] w-full ">
-        <div className="sm:w-[40%]">
-        
-          <ProfileOverview />
-        </div>  
-        <IdCardDetails data={data} message={message} />
-      </div>
-      <LatestNews />
-      <Outlet />
-    </div>
+   <div className="w-full min-h-screen flex flex-col gap-6 p-4">
+  {/* Header */}
+ 
+
+  {/* Main Content Area */}
+  <main
+    className="
+      grid 
+      grid-cols-1 
+      lg:grid-cols-[1fr_2fr] 
+      gap-6 
+      w-full
+      items-start
+    "
+  >
+    {/* Profile Overview */}
+    <section className="w-full">
+      <ProfileOverview />
+    </section>
+
+    {/* ID Card Details */}
+    <section className="w-full">
+      <IdCardDetails data={data} message={message} />
+    </section>
+  </main>
+
+  {/* Latest News Section */}
+  <section className="w-full">
+    <LatestNews />
+  </section>
+
+  {/* Dynamic Routed Content */}
+  <section className="w-full">
+    <Outlet />
+  </section>
+</div>
+
   );
 };
 
