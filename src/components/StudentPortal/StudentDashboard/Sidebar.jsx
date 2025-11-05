@@ -3,13 +3,12 @@ import React, { createContext, useContext, useEffect, useRef, useState, useMemo,
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
-  Id,
-  FileText,
-  Bell,
-  User,
-  Edit3,
+ UserCircle,
+  Loader2, 
+  Contact,
   LogOut,
   Menu,
+  Edit,
   X,
 } from "lucide-react";
 import logo from "../../assets/sdm2_logo.png";
@@ -101,7 +100,7 @@ export default function Sidebar() {
 
                 <SidebarItem
                   icon={
-                    <img src={identityCardIcon} alt="Id Card" className="w-5" />
+                    <Contact size={24}/>
                   }
                   text="ID Card"
                   to="/id-card"
@@ -109,7 +108,7 @@ export default function Sidebar() {
                   link="/identity-cards"
                 />
                 <SidebarItem
-                  icon={<LoaderPinwheel size={24} />}
+                  icon={<Loader2  size={24} />}
                   text="Status"
                   to="/status"
                   id="status"

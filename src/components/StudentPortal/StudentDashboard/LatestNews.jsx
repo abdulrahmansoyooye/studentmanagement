@@ -6,20 +6,20 @@ import post from "../../assets/post.webp";
 const LatestNews = () => {
   const news = [
     {
-      title: "FACULTY OF CIS HELD ITS FIRST INAUGURAL LECTURE",
-      location: "University of Ilorin, Nigeria",
+      title: "FIRST INAUGURAL LECTURE",
+      location: "Newgate University of Minna, Nigeria",
       // image: game,
     },
 
     {
-      title: "UNILORIN 2023/2024 Post-UTME FORM OUT",
-      location: "University of Ilorin, Nigeria",
+      title: "FIRST INAUGURAL LECTURE",
+      location: "Newgate University of Minna, Nigeria",
       image: post,
     },
 
     {
-      title: "FACULTY OF CIS 2ND ANNUAL CONFERENCE",
-      location: "University of Ilorin, Nigeria",
+      title: "FIRST INAUGURAL LECTURE",
+      location: "Newgate University of Minna, Nigeria",
       // image: conference,
     },
   ];
