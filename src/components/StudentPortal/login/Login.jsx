@@ -32,6 +32,7 @@ export default function Login() {
   const abortCtrl = useRef(null);
   const isMounted = useRef(true);
 
+  // ✅ cleanup on unmount
   useEffect(() => {
     return () => {
       isMounted.current = false;
@@ -39,44 +40,55 @@ export default function Login() {
     };
   }, []);
 
-  const handleChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      // Sanitize inputs to prevent injection
-      const cleanValue = value.replace(/[<>]/g, "");
-      setForm((prev) => ({ ...prev, [name]: cleanValue }));
-    },
-    []
-  );
+  /** ✅ Input Change Handler with Sanitization */
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    const cleanValue = value.replace(/[<>]/g, "");
+    setForm((prev) => ({ ...prev, [name]: cleanValue }));
+  }, []);
 
+  /** ✅ Fixed Submit Handler */
   const handleSubmit = useCallback(
     async (e) => {
+
       e.preventDefault();
       if (loading) return;
 
       setErrors(null);
       setLoading(true);
 
-      // Cancel any ongoing request before making a new one
+      // cancel previous request
       if (abortCtrl.current) abortCtrl.current.abort();
       abortCtrl.current = new AbortController();
 
       try {
-        const { data, status } = await api.post(
+        const response = await api.post(
           "/auth/login",
           { ...form },
           { signal: abortCtrl.current.signal }
         );
+        if (response.status === 200 && isMounted.current) {
+          const { token, userId, ...rest } = response.data;
+           
+          // ✅ ensure your session context updates reactively
+          updateSessionData({
+            token,
+            userId,
+            ...rest, // optional extra user info
+          });
 
-        if (status === 200 && isMounted.current) {
-          updateSessionData(data);
+          // ✅ also persist to storage (optional but useful)
+          localStorage.setItem("sessionData", JSON.stringify({ token, userId }));
+
+          // ✅ navigate without hard reload (keeps React context alive)
           navigate("/", { replace: true });
         }
       } catch (error) {
         if (error.code === "ERR_CANCELED") return;
 
         const message =
-          error.response?.data?.message || "Invalid credentials or network error.";
+          error.response?.data?.message ||
+          "Invalid credentials or network error.";
         if (isMounted.current) setErrors(message);
       } finally {
         if (isMounted.current) setLoading(false);
@@ -95,7 +107,9 @@ export default function Login() {
             className="w-20 mb-3 drop-shadow-sm"
             loading="lazy"
           />
-          <h1 className="text-2xl font-semibold text-gray-800">Sign in to your account</h1>
+          <h1 className="text-2xl font-semibold text-gray-800">
+            Sign in to your account
+          </h1>
           <p className="text-gray-500 text-sm mt-1">Enter your details below</p>
         </div>
 
@@ -121,7 +135,6 @@ export default function Login() {
               id="matricNumber"
               name="matricNumber"
               type="text"
-              autoComplete="username"
               required
               value={form.matricNumber}
               onChange={handleChange}
@@ -131,14 +144,16 @@ export default function Login() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Password
             </label>
             <input
               id="password"
               name="password"
               type="password"
-              autoComplete="current-password"
               required
               value={form.password}
               onChange={handleChange}
@@ -171,3 +186,4 @@ export default function Login() {
     </main>
   );
 }
+

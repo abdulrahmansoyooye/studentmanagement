@@ -1,27 +1,34 @@
 import React from "react";
-import QRCode from "qrcode.react";
+import { Download, QrCode } from "lucide-react";
 
 const QrCodeDisplay = ({ data, message }) => {
+  const disabled = message === "pending";
+
   return (
-    <div className="flex flex-col gap-[2rem]  items-center w-full">
-      <div className="flex flex-col gap-[1rem] justify-center items-center">
-        <div className="flex flex-col">
-          <h2 className="text-xl font-semibold text-center">
-            Download or Scan the QR Code
-          </h2>
-        </div>
-        <img src={data} alt="" srcset="" />{" "}
-      </div>
-      <div className="w-full ">
-        <a href={data} download={true}>
-          <button
-            className=" p-10 w-full bg-green-500 text-white py-2 rounded  hover:bg-green-600 focus:outline-none"
-            disabled={message === "pending" ? true : false}
-          >
-            Download QR Code
-          </button>
-        </a>
-      </div>
+    <div className="flex flex-col items-center gap-6 w-full bg-white p-6 rounded-lg shadow-md">
+      <h2 className="text-xl font-semibold text-center text-gray-800 flex items-center gap-2">
+        <QrCode className="text-blue-600 w-6 h-6" /> Scan or Download Your QR Code
+      </h2>
+
+      <img
+        src={data}
+        alt="QR Code"
+        className={`w-48 h-48 object-contain ${disabled ? "opacity-50" : ""}`}
+      />
+
+      <a href={data} download className="w-full">
+        <button
+          disabled={disabled}
+          className={`flex items-center justify-center gap-2 w-full py-2 rounded-md transition text-white font-medium ${
+            disabled
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-green-600 hover:bg-green-700"
+          }`}
+        >
+          <Download size={18} />
+          {disabled ? "Pending Approval" : "Download QR Code"}
+        </button>
+      </a>
     </div>
   );
 };
