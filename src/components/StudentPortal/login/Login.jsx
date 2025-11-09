@@ -32,13 +32,7 @@ export default function Login() {
   const abortCtrl = useRef(null);
   const isMounted = useRef(true);
 
-  // ✅ cleanup on unmount
-  useEffect(() => {
-    return () => {
-      isMounted.current = false;
-      if (abortCtrl.current) abortCtrl.current.abort();
-    };
-  }, []);
+ 
 
   /** ✅ Input Change Handler with Sanitization */
   const handleChange = useCallback((e) => {
