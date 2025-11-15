@@ -12,7 +12,7 @@ const EditProfile = () => {
     department: "",
   });
   const { fullName, email, faculty, matricNumber, level, department } = user;
-  const { sessionData, updateSessionData } = useSession();
+  const { sessionData,  } = useSession();
   const [errors, setErrors] = useState(false);
 
   const { userId } = sessionData;
@@ -34,7 +34,7 @@ const EditProfile = () => {
         console.error("Failed to fetch user data:", error);
       }
     })();
-  }, []);
+  }, [token,userId]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });

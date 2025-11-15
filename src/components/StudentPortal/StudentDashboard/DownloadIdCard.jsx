@@ -1,6 +1,5 @@
 // src/DownloadIdCard.jsx
 import React from "react";
-import { idCardData } from "../../../data";
 
 const DownloadIdCard = () => {
   const handleDownload = () => {

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import IdCardDetails from "../IDcardDetails";
-import { initialUserData } from "../../data.js";
 import axios from "axios";
-import QRCode from "./QrCodeDisplay";
-import { Outlet } from "react-router-dom";
 import QrCodeDisplay from "./QrCodeDisplay";
 import { useSession } from "../../../context/session";
 
@@ -38,7 +35,7 @@ const IdentityCards = () => {
         console.error("Failed to fetch user data:", error);
       }
     })();
-  }, []);
+  }, [token,userId]);
   return (
     <div className="flex max-lg:flex-col gap-[2rem] p-[2rem_1rem]  w-full">
       <div className="sm:w-[50%] w-full">
