@@ -102,6 +102,15 @@ export default function Sidebar({ mobileNav, setMobileNav }) {
           >
             <X size={22} />
           </button>
+
+
+          <button
+        onClick={() => setMobileNav(false)}
+        className="ml-auto md:hidden text-gray-700 hover:text-gray-900"
+        aria-label="Toggle Menu"
+      >
+        <Menu size={24} />
+      </button>
         </div>
 
         {/* Navigation */}

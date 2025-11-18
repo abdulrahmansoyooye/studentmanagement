@@ -167,7 +167,7 @@ export default function Login() {
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
+        {/* <p className="text-center text-sm text-gray-500 mt-6">
           Forgot password?{" "}
           <a
             href="/reset"
@@ -175,7 +175,7 @@ export default function Login() {
           >
             Reset here
           </a>
-        </p>
+        </p> */}
       </section>
     </main>
   );
