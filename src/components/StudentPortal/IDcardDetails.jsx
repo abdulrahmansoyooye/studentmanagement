@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const statusStyles = {
   pending: "bg-yellow-500 text-white",
-  error: "bg-red-500 text-white",
-  success: "bg-green-500 text-white",
+  approved: "bg-green-600 text-white",
+  revoked: "bg-red-600 text-white",
+  none: "bg-gray-200 text-gray-700",
 };
 
 const statusMessages = {
-  pending: "Your ID card request is pending.",
-  error: "There was an error. Please request a new ID card.",
-  success: "Congratulations! Your ID card is ready.",
+  pending: "Your ID card request is pending approval.",
+  approved: "Your ID card has been approved.",
+  revoked: "Your ID card has been revoked. You may request a new one.",
+  none: "You have not requested an ID card yet.",
 };
 
-const IdCardDetails = ({ message, data = {} }) => {
+const IdCardDetails = ({ status = "pending", data = {} }) => {
+  const [loading, setLoading] = useState(false);
+
   const {
     fullName = "",
     level = "",
@@ -21,20 +26,43 @@ const IdCardDetails = ({ message, data = {} }) => {
     email = "",
   } = data;
 
-  const alertClass = statusStyles[message];
-  const alertMessage = statusMessages[message];
+  const alertClass = statusStyles[status];
+  const alertMessage = statusMessages[status];
+
+  const handleRequest = async () => {
+    try {
+      setLoading(true);
+      await axios.post("/api/idcard/request");
+      alert("ID card request created successfully.");
+      window.location.reload(); // or refetch if you're using React Query/SWR
+    } catch (err) {
+      alert(err?.response?.data?.message || "Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const showRequestButton = status === "none" || status === "revoked";
 
   return (
     <div className="h-full w-full">
       <div className="bg-white p-6 w-full h-full rounded-md">
         <h2 className="text-xl font-semibold mb-4">My ID Card Details</h2>
 
-        {message && (
-          <div
-            className={`text-center ${alertClass} p-4 rounded-md w-full my-4 transition-all duration-300`}
+        <div
+          className={`text-center ${alertClass} p-4 rounded-md w-full my-4 transition-all duration-300`}
+        >
+          {alertMessage}
+        </div>
+
+        {showRequestButton && (
+          <button
+            onClick={handleRequest}
+            disabled={loading}
+            className={`px-6 py-2 mb-4 rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50`}
           >
-            {alertMessage}
-          </div>
+            {loading ? "Submitting..." : "Request ID Card"}
+          </button>
         )}
 
         <form className="grid grid-cols-1 gap-8 max-lg:flex flex-col">
@@ -46,7 +74,7 @@ const IdCardDetails = ({ message, data = {} }) => {
               disabled
               value={fullName}
               type="text"
-              className="mt-1 w-full rounded-md p-2 border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 w-full rounded-md p-2 border border-gray-300"
               placeholder="Your full name"
             />
           </div>
@@ -70,7 +98,7 @@ const InputField = ({ label, value, type = "text" }) => (
       disabled
       value={value}
       type={type}
-      className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-indigo-500 focus:ring-indigo-500"
+      className="mt-1 w-full rounded-md border border-gray-300 p-2"
       placeholder={`Your ${label.toLowerCase()}`}
     />
   </div>
