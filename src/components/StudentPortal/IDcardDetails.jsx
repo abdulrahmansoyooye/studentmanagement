@@ -27,19 +27,19 @@ const IdCardDetails = ({ status = "none", data = {} }) => {
     email = "",
   } = data;
  const { sessionData } = useSession();
-  const {  token } = sessionData || {};
+  const { userId, token } = sessionData || {};
   const alertClass = statusStyles[status];
   const alertMessage = statusMessages[status];
 
   const handleRequest = async () => {
     try {
       setLoading(true);
-      await axios.get(
-              `https://studentbackendportal.onrender.com/idcard/request`,
+      await axios.post(
+              `https://studentbackendportal.onrender.com/request/${userId}`,
               { headers: { Authorization: `Bearer ${token}` } }
             );
     
-      window.location.reload(); // or refetch if you're using React Query/SWR
+      // etch if you're using React Query/SWR
     } catch (err) {
       alert(err?.response?.data?.message || "Something went wrong.");
     } finally {
