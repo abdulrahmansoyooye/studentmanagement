@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useSession } from "../../context/session";
 
 const statusStyles = {
   pending: "bg-yellow-500 text-white",
@@ -15,7 +16,7 @@ const statusMessages = {
   none: "You have not requested an ID card yet.",
 };
 
-const IdCardDetails = ({ status = "pending", data = {} }) => {
+const IdCardDetails = ({ status = "none", data = {} }) => {
   const [loading, setLoading] = useState(false);
 
   const {
@@ -25,15 +26,19 @@ const IdCardDetails = ({ status = "pending", data = {} }) => {
     department = "",
     email = "",
   } = data;
-
+ const { sessionData } = useSession();
+  const {  token } = sessionData || {};
   const alertClass = statusStyles[status];
   const alertMessage = statusMessages[status];
 
   const handleRequest = async () => {
     try {
       setLoading(true);
-      await axios.post("/api/idcard/request");
-      alert("ID card request created successfully.");
+      await axios.get(
+              `https://studentbackendportal.onrender.com/idcard/request`,
+              { headers: { Authorization: `Bearer ${token}` } }
+            );
+    
       window.location.reload(); // or refetch if you're using React Query/SWR
     } catch (err) {
       alert(err?.response?.data?.message || "Something went wrong.");
@@ -42,7 +47,9 @@ const IdCardDetails = ({ status = "pending", data = {} }) => {
     }
   };
 
-  const showRequestButton = status === "none" || status === "revoked";
+  console.log(data)
+
+  const showRequestButton = data.status === "none"  || data.status === "revoked";
 
   return (
     <div className="h-full w-full">

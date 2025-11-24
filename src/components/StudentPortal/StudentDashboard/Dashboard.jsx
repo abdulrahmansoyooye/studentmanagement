@@ -14,9 +14,10 @@ const Dashboard = () => {
   const [message, setMessage] = useState("");
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-
+console.log(userId)
   useEffect(() => {
     if (!userId || !token) return;
+      
 
     const fetchUserData = async () => {
       try {
