@@ -200,7 +200,7 @@ export default function Sidebar() {
             aria-haspopup="dialog"
             aria-controls="logout-modal"
           >
-          
+          <Avat
             <img
               src={
                 user?.photo
