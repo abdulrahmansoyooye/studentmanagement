@@ -13,6 +13,7 @@ import {
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSession } from "../../../context/session";
 import logo from "../../assets/newgate_logo.jpg";
+import { Avatar } from "./Avatar";
 
 const API_BASE =
   process.env.REACT_APP_API_URL || "https://studentbackendportal.onrender.com";
@@ -200,16 +201,8 @@ export default function Sidebar() {
             aria-haspopup="dialog"
             aria-controls="logout-modal"
           >
-          <Avat
-            <img
-              src={
-                user?.photo
-                  ? `${API_BASE}/assets/${encodeURIComponent(user.photo)}`
-                  : "https://via.placeholder.com/100"
-              }
-              alt="User Avatar"
-              className="w-11 h-11 rounded-full object-cover border"
-            />
+          <Avatar profileImage={user.photo} fullName={user.fullName}/>
+          
             <div className="flex-1">
               <div className="font-semibold text-gray-900">{user?.name || "Student"}</div>
               <div className="text-xs text-gray-500">{user?.matricNumber || ""}</div>
