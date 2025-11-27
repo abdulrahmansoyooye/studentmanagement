@@ -16,9 +16,9 @@ const statusMessages = {
   none: "You have not requested an ID card yet.",
 };
 
-const IdCardDetails = ({ status = "none", data = {} }) => {
+const IdCardDetails = ({  data = {} }) => {
   const [loading, setLoading] = useState(false);
-
+  const status = data?.status
   const {
     fullName = "",
     level = "",
@@ -36,18 +36,19 @@ const IdCardDetails = ({ status = "none", data = {} }) => {
       setLoading(true);
       await axios.post(
               `https://studentbackendportal.onrender.com/request/${userId}`,
+              {
+                qrCodeImage: JSON.stringify(data)
+              },
               { headers: { Authorization: `Bearer ${token}` } }
             );
     
-      // etch if you're using React Query/SWR
+    window?.location?.reload()
     } catch (err) {
       alert(err?.response?.data?.message || "Something went wrong.");
     } finally {
       setLoading(false);
     }
   };
-
-  console.log(data)
 
   const showRequestButton = data.status === "none"  || data.status === "revoked";
 

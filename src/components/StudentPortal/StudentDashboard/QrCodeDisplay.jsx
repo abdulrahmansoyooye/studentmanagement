@@ -1,8 +1,10 @@
 import React from "react";
 import { Download, QrCode } from "lucide-react";
 
-const QrCodeDisplay = ({ data, message }) => {
-  const disabled = message === "pending";
+const QrCodeDisplay = ({ data }) => {
+
+  const status = "approved"
+  const disabled = status === "pending";
 
   return (
     <div className="flex flex-col items-center gap-6 w-full bg-white p-6 rounded-lg shadow-md">

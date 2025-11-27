@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [message, setMessage] = useState("");
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-console.log(userId)
+
   useEffect(() => {
     if (!userId || !token) return;
       
@@ -65,9 +65,9 @@ console.log(userId)
 
         <div className="flex items-center gap-3">
           <div className="bg-[#000080] text-white px-4 py-2 rounded-xl text-sm shadow-sm">
-            {message === "pending" && "ID Request Pending"}
-            {message === "success" && "ID Card Active"}
-            {message === "error" && "No ID Card Found"}
+            {data.status === "pending" && "ID Request Pending"}
+            {data.status === "revoked" && "ID Card Active"}
+            {data.status === "none" && "No ID Card Found"}
           </div>
         </div>
       </header>

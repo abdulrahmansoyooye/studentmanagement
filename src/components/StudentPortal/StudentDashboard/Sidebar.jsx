@@ -17,12 +17,6 @@ import logo from "../../assets/newgate_logo.jpg";
 const API_BASE =
   process.env.REACT_APP_API_URL || "https://studentbackendportal.onrender.com";
 
-/**
- * Header component (place at the top of your app layout)
- * Props:
- *   - mobileNav: boolean
- *   - setMobileNav: (v:boolean) => void
- */
 export function Header({ mobileNav, setMobileNav }) {
   return (
     <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-40 flex items-center px-4 md:px-6">
@@ -59,7 +53,7 @@ export default function Sidebar() {
   const [logoutOpen, setLogoutOpen] = useState(false);
   const [user, setUser] = useState({});
   const [mobileNav, setMobileNav] = useState(false);
-  const abortRef = useRef(null);
+ 
   const isMounted = useRef(true);
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,14 +64,8 @@ export default function Sidebar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
-  // fetch user safely with AbortController + mounted guard
   useEffect(() => {
-    isMounted.current = true;
-    if (!userId || !token) return;
-
-    abortRef.current?.abort();
-    const controller = new AbortController();
-    abortRef.current = controller;
+   
 
     (async () => {
       try {
@@ -85,7 +73,7 @@ export default function Sidebar() {
           `${API_BASE}/users/${encodeURIComponent(userId)}`,
           {
             headers: { Authorization: `Bearer ${token}` },
-            signal: controller.signal,
+            
           }
         );
         if (!res.ok) throw new Error("Unable to fetch user data");
@@ -96,10 +84,7 @@ export default function Sidebar() {
       }
     })();
 
-    return () => {
-      controller.abort();
-      isMounted.current = false;
-    };
+   
   }, [userId, token]);
 
   // lock body scroll when mobile nav open
@@ -215,6 +200,7 @@ export default function Sidebar() {
             aria-haspopup="dialog"
             aria-controls="logout-modal"
           >
+          
             <img
               src={
                 user?.photo

@@ -24,6 +24,7 @@ const IdentityCards = () => {
         const data = await response.data;
         if (response.status === 202) {
           setMessage("pending");
+          setData(data)
         } else if (response.status === 200) {
           setMessage("success");
           setData(data);
@@ -44,8 +45,9 @@ const IdentityCards = () => {
         </div>
         <div className=" bg-white p-5 rounded-lg mt-2">
           <div className="flex gap-[1rem] justify-between">
-            {message !== "pending" ? (
-              <QrCodeDisplay data={data.qrcode} message={message} />
+            {data.status === "pending" || "revoked" ? (
+             
+               <QrCodeDisplay data={data.qrcode} message={message} />
             ) : (
               <p className="text-sm text-center p-[1rem] ml-20">
                 Kindly wait for the admin to generate your Id card

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { initialUserData } from "../../data";
 import { useSession } from "../../../context/session";
+import { Avatar } from "./Avatar";
 
 const API_BASE =
   process.env.REACT_APP_API_URL || "https://studentbackendportal.onrender.com";
@@ -48,10 +49,7 @@ const ProfileOverview = () => {
   }, [userId, token]);
 
   // ✅ fallback image
-  const profileImage =
-    user?.photo && user.photo !== "null"
-      ? `${API_BASE}/assets/${user.photo}`
-      : "https://via.placeholder.com/150";
+
 
   return (
     <div className="profile-wrapper bg-white rounded-xl shadow-sm p-6 sm:p-8 w-full max-w-md mx-auto transition-all duration-300">
@@ -60,11 +58,7 @@ const ProfileOverview = () => {
       ) : (
         <>
           <div className="text-center mb-6">
-            <img
-              src={profileImage}
-              alt={`${user.fullName || "User"}'s profile`}
-              className="rounded-full w-24 h-24 mx-auto border-2 border-gray-200 shadow-sm object-cover"
-            />
+           <Avatar profileImage={user.photo} fullName={user.fullName}/>
             <h2 className="text-2xl font-semibold mt-3 text-gray-800">
               {user.fullName || "Unnamed User"}
             </h2>
