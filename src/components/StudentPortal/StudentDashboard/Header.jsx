@@ -1,5 +1,5 @@
 // src/student-dashboard/Header.jsx
-import logo2 from "../../assets/newgate_logo.jpg";
+import logo2 from "../../assets/NewGate_logo_III.png";
 
 export default function Header() {
   return (

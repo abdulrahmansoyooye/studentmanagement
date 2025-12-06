@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSession } from "../../../context/session";
-import logo from "../../assets/newgate_logo.jpg";
+import logo from "../../assets/NewGate_logo_III.png";
 import { Avatar } from "./Avatar";
 
 const API_BASE =
