@@ -16,9 +16,9 @@ const statusMessages = {
   none: "You have not requested an ID card yet.",
 };
 
-const IdCardDetails = ({  data = {} }) => {
+const IdCardDetails = ({ data = {} }) => {
   const [loading, setLoading] = useState(false);
-  const status = data?.status
+  const status = data?.status;
   const {
     fullName = "",
     level = "",
@@ -26,7 +26,7 @@ const IdCardDetails = ({  data = {} }) => {
     department = "",
     email = "",
   } = data;
- const { sessionData } = useSession();
+  const { sessionData } = useSession();
   const { userId, token } = sessionData || {};
   const alertClass = statusStyles[status];
   const alertMessage = statusMessages[status];
@@ -35,14 +35,12 @@ const IdCardDetails = ({  data = {} }) => {
     try {
       setLoading(true);
       await axios.post(
-              `https://studentbackendportal.onrender.com/request/${userId}`,
-              {
-               
-              },
-              { headers: { Authorization: `Bearer ${token}` } }
-            );
-    
-    window?.location?.reload()
+        `http://localhost:3002/request/${userId}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      window?.location?.reload();
     } catch (err) {
       alert(err?.response?.data?.message || "Something went wrong.");
     } finally {
@@ -50,7 +48,7 @@ const IdCardDetails = ({  data = {} }) => {
     }
   };
 
-  const showRequestButton = data.status === "none"  || data.status === "revoked";
+  const showRequestButton = data.status === "none" || data.status === "revoked";
 
   return (
     <div className="h-full w-full">
