@@ -1,23 +1,21 @@
-import React from "react";
-import post from "../../assets/post.webpII.png";
-import post_II from "../../assets/post.web_III.png";
-import post_III from "../../assets/post.web_IV.png";
+
+
 const LatestNews = () => {
   const news = [
     {
       title: "A Defining Moment in Newgate University’s History",
       location: "Newgate University, Minna, Nigeria",
-      image: post,
+      image: "post",
     },
     {
       title: "Newgate University Minna Secures Full Operational Licence from NUC",
       location: "Main Auditorium, Minna Campus",
-      image: post_II
+      image: "post_II"
     },
     {
       title: "The Pro Chancellor and Chairman, Newgate University Minna, Mall. Hassan Nuhu awarded by The Association of Medical Laboratory Scientists of Nigeria (AMLSN)",
       location: "Multipurpose Hall, Minna Campus",
-      image: post_III
+      image: "post_III"
     },
   ];
 

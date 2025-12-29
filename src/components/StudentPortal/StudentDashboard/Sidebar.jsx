@@ -201,7 +201,7 @@ export default function Sidebar() {
             aria-haspopup="dialog"
             aria-controls="logout-modal"
           >
-          <Avatar profileImage={user.photo} fullName={user.fullName}/>
+          <Avatar profileImage={user.photo} siebar fullName={user.fullName}/>
           
             <div className="flex-1">
               <div className="font-semibold text-gray-900">{user?.name || "Student"}</div>

@@ -1,4 +1,4 @@
-export const Avatar = ({ profileImage, fullName }) => {
+export const Avatar = ({ profileImage, fullName,sidebar }) => {
   const getInitials = (name) => {
     if (!name) return "U";
 
@@ -24,7 +24,7 @@ export const Avatar = ({ profileImage, fullName }) => {
         />
       ) : (
         <div
-          className={`rounded-full w-full h-full flex items-center justify-center text-white font-semibold text-3xl shadow-md ${gradient}`}
+          className={`rounded-full w-full h-full flex items-center justify-center text-white font-semibold text-3xl shadow-md ${gradient} `}
         >
           {initials}
         </div>
