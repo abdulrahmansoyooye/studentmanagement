@@ -2,7 +2,7 @@ import { useState, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSession } from "../../../context/session";
-import logo from "../../assets/newgate_logo.jpg";
+import logo from "../../assets/NewGate_logo_III.png";
 import loader from "../../assets/loader.svg";
 
 /**
@@ -133,7 +133,7 @@ export default function Login() {
               value={form.matricNumber}
               onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
-              placeholder="e.g. 21/01/0012"
+              placeholder="e.g. 25B/UE/BCSX/1002"
             />
           </div>
 
