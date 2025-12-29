@@ -17,38 +17,33 @@ const statusMessages = {
 };
 
 const IdCardDetails = ({  data = {} }) => {
-  const [loading, setLoading] = useState(false);
-  const status = data?.status
-  const {
-    fullName = "",
-    level = "",
-    matricNumber = "",
-    department = "",
-    email = "",
-  } = data;
- const { sessionData } = useSession();
-  const { userId, token } = sessionData || {};
-  const alertClass = statusStyles[status];
-  const alertMessage = statusMessages[status];
+ const [loading, setLoading] = useState(false);
 
-  const handleRequest = async () => {
-    try {
-      setLoading(true);
-      await axios.post(
-              `https://studentbackendportal.onrender.com/request/${userId}`,
-              {
-                qrCodeImage: JSON.stringify(data)
-              },
-              { headers: { Authorization: `Bearer ${token}` } }
-            );
-    
-    window?.location?.reload()
-    } catch (err) {
-      alert(err?.response?.data?.message || "Something went wrong.");
-    } finally {
-      setLoading(false);
-    }
-  };
+const { sessionData } = useSession();
+const { userId, token } = sessionData || {};
+
+const handleRequest = async () => {
+  try {
+    setLoading(true);
+
+    await axios.post(
+      `https://studentbackendportal.onrender.com/request/${userId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    window.location.reload();
+  } catch (err) {
+    alert(err?.response?.data?.message || "Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const showRequestButton = data.status === "none"  || data.status === "revoked";
 
