@@ -45,9 +45,9 @@ const IdentityCards = () => {
         </div>
         <div className=" bg-white p-5 rounded-lg mt-2">
           <div className="flex gap-[1rem] justify-between">
-            {data.status === "pending" || "revoked" ? (
+            {data.status !== "approved" ? (
               <p className="text-sm text-center p-[1rem] ml-20">
-                Kindly wait for the admin to generate your Id card
+                Kindly wait for the Id card to be processed
               </p>
             ) : (
               <QrCodeDisplay data={data} message={message} />
