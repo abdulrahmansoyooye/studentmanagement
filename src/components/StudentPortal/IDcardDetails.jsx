@@ -35,7 +35,7 @@ const IdCardDetails = ({ data = {} }) => {
     try {
       setLoading(true);
       await axios.post(
-        `http://localhost:3002/request/${userId}`,
+        `https://studentbackendportal.onrender.com/request/${userId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

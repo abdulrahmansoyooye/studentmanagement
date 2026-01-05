@@ -50,7 +50,7 @@ const IdentityCards = () => {
                 Kindly wait for the admin to generate your Id card
               </p>
             ) : (
-              <QrCodeDisplay data={data.qrcode} message={message} />
+              <QrCodeDisplay data={data} message={message} />
             )}
           </div>
         </div>

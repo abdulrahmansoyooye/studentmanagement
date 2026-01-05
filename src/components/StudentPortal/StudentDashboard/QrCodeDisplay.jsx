@@ -3,7 +3,7 @@ import { Download, QrCode } from "lucide-react";
 
 const QrCodeDisplay = ({ data }) => {
 
-  const status = "approved"
+  const status = data.status
   const disabled = status === "pending";
 
   return (
@@ -13,12 +13,12 @@ const QrCodeDisplay = ({ data }) => {
       </h2>
 
       <img
-        src={data}
+        src={data.qrcode}
         alt="QR Code"
         className={`w-48 h-48 object-contain ${disabled ? "opacity-50" : ""}`}
       />
 
-      <a href={data} download className="w-full">
+      <a href={data.qrcode} download className="w-full">
         <button
           disabled={disabled}
           className={`flex items-center justify-center gap-2 w-full py-2 rounded-md transition text-white font-medium ${
