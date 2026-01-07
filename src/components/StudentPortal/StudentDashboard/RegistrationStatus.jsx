@@ -1,8 +1,8 @@
-
+// src/components/StudentPortal/StudentDashboard/RegistrationStatus.jsx
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import { useSession } from "../../../context/session";
-import { Loader2, RefreshCcw, AlertCircle, CheckCircle, Clock } from "lucide-react";
+import { Loader2, RefreshCcw, AlertCircle, CheckCircle, Clock, XCircle } from "lucide-react";
 
 // Use environment variable or fallback
 const API_BASE = process.env.REACT_APP_API_URL || "https://studentbackendportal.onrender.com";
@@ -21,7 +21,7 @@ export default function RegistrationStatus() {
   const [statusState, setStatusState] = useState({
     loading: false,
     error: null,
-    status: "idle", // 'idle' | 'pending' | 'success' | 'error'
+    status: "idle", // 'idle' | 'pending' | 'approved' | 'revoked' | 'error' (fetch error)
     data: null,
   });
 
@@ -41,10 +41,15 @@ export default function RegistrationStatus() {
       });
 
       const { status, ...restData } = response.data;
-      // Normalize 'ready' or 'approved' to 'success' for UI if needed, 
-      // but assuming backend returns 'pending', 'ready'/'success', etc.
       
-      const normalizedStatus = status === "ready" || status === "approved" ? "success" : status;
+      // Normalize statuses strictly if needed, but assuming backend sends:
+      // "pending", "approved" (or "ready"), "revoked"
+      // If backend sends "ready", we map it to "approved" to match requested terminology
+      let normalizedStatus = status;
+      if (status === "ready") normalizedStatus = "approved";
+      if (!["pending", "approved", "revoked"].includes(normalizedStatus)) {
+        // Fallback or keep raw status if unexpected
+      }
 
       setStatusState({
         loading: false,
@@ -55,7 +60,6 @@ export default function RegistrationStatus() {
 
     } catch (err) {
       console.error("ID Card status fetch error:", err);
-      // Only show error state if not polling (to avoid flickering on background updates)
       if (!isPolling) {
         setStatusState((prev) => ({
           ...prev,
@@ -69,10 +73,7 @@ export default function RegistrationStatus() {
 
   // Initial fetch and polling logic
   useEffect(() => {
-    // Initial fetch
     fetchStatus();
-
-    // Cleanup timer on unmount
     return () => {
       if (pollingTimerRef.current) clearInterval(pollingTimerRef.current);
     };
@@ -80,6 +81,7 @@ export default function RegistrationStatus() {
 
   // Effect to manage polling based on status
   useEffect(() => {
+    // Only poll if pending
     if (statusState.status === "pending") {
       if (!pollingTimerRef.current) {
         pollingTimerRef.current = setInterval(() => {
@@ -87,7 +89,7 @@ export default function RegistrationStatus() {
         }, 5000);
       }
     } else {
-      // Stop polling if success (ready) or error
+      // Stop polling for any other state (approved, revoked, error, idle)
       if (pollingTimerRef.current) {
         clearInterval(pollingTimerRef.current);
         pollingTimerRef.current = null;
@@ -108,14 +110,14 @@ export default function RegistrationStatus() {
       );
     }
 
-    if (statusState.error) {
+    if (statusState.status === "error" || statusState.error) {
       return (
         <div className="flex flex-col items-center justify-center py-8 text-center px-4">
           <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-3">
             <AlertCircle className="w-6 h-6 text-red-600" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900">Connection Error</h3>
-          <p className="text-gray-500 mt-1 mb-4">{statusState.error}</p>
+          <p className="text-gray-500 mt-1 mb-4">{statusState.error || "An unknown error occurred."}</p>
           <button
             onClick={handleRetry}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -129,22 +131,21 @@ export default function RegistrationStatus() {
 
     if (statusState.status === "pending") {
       return (
-        <div className="py-6">
+        <div className="py-6 animate-in fade-in duration-500">
           <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 text-center">
             <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Clock className="w-8 h-8 text-yellow-600 animate-pulse" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Application Pending</h3>
             <p className="text-gray-600 max-w-md mx-auto">
-              Your ID card application is currently under review by the administration. 
-              This page will update automatically once approved.
+              Your ID card application is under review. This page will update automatically once a decision is made.
             </p>
           </div>
         </div>
       );
     }
 
-    if (statusState.status === "success") {
+    if (statusState.status === "approved") {
       const { fullName, matricNumber, level, department } = statusState.data || {};
       return (
         <div className="py-2 animate-in fade-in duration-500">
@@ -153,8 +154,8 @@ export default function RegistrationStatus() {
               <CheckCircle className="w-6 h-6 text-green-600" />
             </div>
             <div>
-              <h3 className="font-bold text-green-900">ID Card Ready!</h3>
-              <p className="text-green-700 text-sm">Your application has been approved and processed.</p>
+              <h3 className="font-bold text-green-900 text-lg">Application Approved!</h3>
+              <p className="text-green-700 text-sm">Your student ID card has been successfully processed and is ready.</p>
             </div>
           </div>
 
@@ -174,10 +175,35 @@ export default function RegistrationStatus() {
       );
     }
 
-    // Default/Empty state
+    if (statusState.status === "revoked") {
+      return (
+        <div className="py-6 animate-in fade-in duration-500">
+          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <XCircle className="w-8 h-8 text-red-600" />
+            </div>
+            <h3 className="text-xl font-bold text-red-900 mb-2">Application Revoked</h3>
+            <p className="text-red-700 max-w-md mx-auto">
+              Your ID card application has been revoked or declined by the administration. 
+              Please contact student support for further assistance.
+            </p>
+            <div className="mt-6">
+              <button 
+                onClick={handleRetry}
+                className="px-6 py-2 bg-white border border-red-300 text-red-700 font-medium rounded-lg hover:bg-red-50"
+              >
+                Refresh Status
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // Default/Empty state (e.g. status is null or unknown)
     return (
       <div className="text-center py-12 text-gray-400">
-        <p>No status information available.</p>
+        <p>No valid status information available ({statusState.status}).</p>
         <button onClick={handleRetry} className="text-blue-600 mt-2 hover:underline">Refresh</button>
       </div>
     );
@@ -194,8 +220,8 @@ export default function RegistrationStatus() {
          {/* Status Indicators (Visual Aid) */}
          <div className="flex gap-4 justify-center mb-8 border-b border-gray-100 pb-8">
             <StatusIndicator label="Pending" isActive={statusState.status === 'pending'} color="bg-yellow-400" />
-            <StatusIndicator label="Ready" isActive={statusState.status === 'success'} color="bg-green-500" />
-            <StatusIndicator label="Rejected" isActive={statusState.status === 'error'} color="bg-red-500" />
+            <StatusIndicator label="Approved" isActive={statusState.status === 'approved'} color="bg-green-500" />
+            <StatusIndicator label="Revoked" isActive={statusState.status === 'revoked'} color="bg-red-500" />
          </div>
 
          {renderContent()}
@@ -206,6 +232,10 @@ export default function RegistrationStatus() {
 
 // Sub-components
 function StatusIndicator({ label, isActive, color }) {
+  // If active, use the color. If not active, gray out.
+  // We can make completed stages colored if we wanted a progress bar feel, 
+  // but for mutually exclusive states (like Pending vs Revoked), highlighting just the active one is clearer.
+  
   return (
     <div className={`flex flex-col items-center gap-2 transition-all duration-300 ${isActive ? 'opacity-100 scale-110' : 'opacity-40 grayscale'}`}>
       <div className={`w-3 h-3 rounded-full ${color} ring-4 ring-opacity-20 ${isActive ? 'ring-current' : 'ring-transparent'}`} />

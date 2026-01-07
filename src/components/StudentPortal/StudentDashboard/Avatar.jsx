@@ -12,7 +12,7 @@ export const Avatar = ({ profileImage, fullName,sidebar }) => {
 
   // Beautiful gradient colors
   const gradient =
-    "bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500";
+    "bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400";
 
   return (
     <div className="w-24 h-24 mx-auto relative">
